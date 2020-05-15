@@ -28,10 +28,10 @@
         <div>
           <input
             :id="itemName"
-            name="database"
+            v-model="selectedItem"
             type="radio"
+            :name="group"
             :value="itemName"
-            :checked="checked"
             class="form-radio h-4 w-4 text-indigo-600 transition duration-150 ease-in-out"
             @change="updateRadioButtonState"
           />
@@ -54,8 +54,13 @@ export default {
       type: String,
       default: ''
     },
-    checked: {
-      type: Boolean
+    group: {
+      type: String,
+      default: ''
+    },
+    selectedItem: {
+      type: String,
+      default: ''
     }
   },
   methods: {

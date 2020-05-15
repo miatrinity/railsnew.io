@@ -9,7 +9,10 @@
       <app-name-input />
       <command-line
         :app-name="appName"
+        :selected-database="selectedDatabase"
+        :selected-frontend-framework="selectedFrontendFramework"
         :database-selection="databaseSelection"
+        :frontend-framework-selection="frontendFrameworkSelection"
         :guest-favorite-flags="guestFavoriteFlags"
         :starter-flags="starterFlags"
         :framework-flags="frameworkFlags"
@@ -19,7 +22,10 @@
       />
     </div>
     <br />
-    <database-selector :items="databaseSelection" />
+    <database-selector
+      :items="databaseSelection"
+      :selected-database="selectedDatabase"
+    />
     <br />
     <guest-favorites :items="guestFavoriteFlags" />
     <br />
@@ -31,7 +37,10 @@
     <br />
     <le-frontend :items="leFrontendFlags" />
     <br />
-    <front-end-framework-selector :items="frontEndFrameworkFlags" />
+    <frontend-framework-selector
+      :items="frontendFrameworkSelection"
+      :selected-frontend-framework="selectedFrontendFramework"
+    />
     <br />
     <testing :items="testingFlags" />
     <br />
@@ -55,7 +64,7 @@ import Starters from '@/components/sections/Starters'
 import Mains from '@/components/sections/Mains'
 import Email from '@/components/sections/Email'
 import LeFrontend from '@/components/sections/LeFrontend'
-import FrontEndFrameworkSelector from '@/components/sections/FrontEndFrameworkSelector'
+import FrontendFrameworkSelector from '@/components/sections/FrontendFrameworkSelector'
 import Testing from '@/components/sections/Testing'
 
 export default {
@@ -71,12 +80,14 @@ export default {
     Mains,
     Email,
     LeFrontend,
-    FrontEndFrameworkSelector,
+    FrontendFrameworkSelector,
     Testing
   },
   data: () => ({
     isOpen: false,
     appName: 'clunky_ninja',
+    selectedDatabase: 'SQLite',
+    selectedFrontendFramework: '',
     setMenus: [
       {
         itemName: 'The Minimalist',
@@ -101,7 +112,7 @@ export default {
           'The current default. Official recommendation from the @librarycongress for archival of datasets!',
         logo: 'SqLiteLogo',
         cliName: 'sqlite3',
-        checked: true
+        group: 'database'
       },
       {
         itemName: 'Postgres',
@@ -109,14 +120,14 @@ export default {
           'The real default. No-brainer if you ever plan to leave development',
         logo: 'PostgresLogo',
         cliName: 'postgresql',
-        checked: false
+        group: 'database'
       },
       {
         itemName: 'MySQL',
         description: "The original default. It's fine, but Postgres is finer!",
         logo: 'MysqlLogo',
         cliName: 'mysql',
-        checked: false
+        group: 'database'
       }
     ],
     guestFavoriteFlags: [
@@ -227,31 +238,48 @@ export default {
         checked: true
       }
     ],
-    frontEndFrameworkFlags: [
+    frontendFrameworkSelection: [
       {
-        itemName: 'react',
-        description: 'React',
-        checked: true
+        itemName: '',
+        description: 'No frontend framework',
+        logo: 'TODO',
+        cliName: '',
+        group: 'frontend-framework'
       },
       {
-        itemName: 'vue',
+        itemName: 'Stimulus.js',
+        description: 'stimulus yoo',
+        logo: 'TODO',
+        cliName: 'stimulus',
+        group: 'frontend-framework'
+      },
+      {
+        itemName: 'Vue.js',
         description: 'vue',
-        checked: true
+        logo: 'TODO',
+        cliName: 'vue',
+        group: 'frontend-framework'
       },
       {
-        itemName: 'angular',
-        description: 'angular',
-        checked: true
+        itemName: 'React',
+        description: 'React',
+        logo: 'TODO',
+        cliName: 'react',
+        group: 'frontend-framework'
       },
       {
-        itemName: 'elm',
+        itemName: 'Elm',
         description: 'elm',
-        checked: true
+        logo: 'TODO',
+        cliName: 'elm',
+        group: 'frontend-framework'
       },
       {
-        itemName: 'stimulus',
-        description: 'stimulus',
-        checked: true
+        itemName: 'Angular',
+        description: 'angular',
+        logo: 'TODO',
+        cliName: 'angular',
+        group: 'frontend-framework'
       }
     ],
     testingFlags: [
@@ -313,14 +341,19 @@ export default {
     })
 
     eventBus.$on('radioButtonUpdated', (itemName) => {
-      const itemIndex = this.databaseSelection.findIndex(
-        (item) => item.itemName === itemName
-      )
+      // this.selectedDatabase = itemName
+      ;[this.databaseSelection, this.frontendFrameworkSelection].forEach(
+        (section) => {
+          const itemNames = section.map((item) => item.itemName)
 
-      Vue.set(
-        this.databaseSelection[itemIndex],
-        'checked',
-        !this.databaseSelection[itemIndex].checked
+          if (itemNames.includes(itemName)) {
+            if (section[0].group === 'database') {
+              this.selectedDatabase = itemName
+            } else if (section[0].group === 'frontend-framework') {
+              this.selectedFrontendFramework = itemName
+            }
+          }
+        }
       )
     })
   }

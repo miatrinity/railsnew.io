@@ -27,7 +27,8 @@
             <radio-button-selector
               v-for="item in items"
               :key="item.itemName"
-              v-model="selectedFrontEndFramework"
+              :selected-item="selectedDatabase"
+              :group="item.group"
               :item-name="item.itemName"
               :description="item.description"
               ><component :is="item.logo"
@@ -57,7 +58,7 @@ export default {
     },
     selectedFrontEndFramework: {
       type: String,
-      default: 'StimulusJS'
+      default: ''
     }
   }
 }

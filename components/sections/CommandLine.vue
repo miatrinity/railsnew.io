@@ -16,6 +16,14 @@ export default {
       type: String,
       default: 'my_app'
     },
+    selectedDatabase: {
+      type: String,
+      default: 'SQLite'
+    },
+    selectedFrontendFramework: {
+      type: String,
+      default: ''
+    },
     guestFavoriteFlags: {
       type: Array,
       default() {
@@ -46,7 +54,7 @@ export default {
         return []
       }
     },
-    frontEndFrameworkFlags: {
+    frontendFrameworkSelection: {
       type: Array,
       default() {
         return []
@@ -67,7 +75,9 @@ export default {
   },
   computed: {
     fullCommandLine() {
-      return `rails new ${this.appName} ${this.selectedDatabase()} ${[
+      return `rails new ${
+        this.appName
+      } ${this.flagForSelectedDatabase()} ${this.flagForSelectedFrontendFramework()} ${[
         ...this.guestFavoriteFlags,
         ...this.starterFlags,
         ...this.frameworkFlags,
@@ -77,7 +87,7 @@ export default {
       ]
         .filter((x) => x.checked)
         .map((x) => x.itemName)
-        .join(' ')}`
+        .join(' ')}`.replace(/  +/g, ' ')
     }
   },
   created() {
@@ -90,12 +100,27 @@ export default {
     })
   },
   methods: {
-    selectedDatabase() {
-      if (this.databaseSelection[0].cliName === 'sqlite3') {
+    flagForSelectedDatabase() {
+      if (this.selectedDatabase === 'SQLite') {
         return ''
       } else {
-        return `-d ${this.databaseSelection[0].cliName}`
+        const databaseItem = this.databaseSelection.find(
+          (item) => item.itemName === this.selectedDatabase
+        )
+        return `-d ${databaseItem.cliName}`
       }
+    },
+    flagForSelectedFrontendFramework() {
+      if (this.selectedFrontendFramework === '') return ''
+
+      console.log(this.frontendFrameworkSelection.map((x) => x.itemName))
+      console.log(this.selectedFrontendFramework)
+
+      const frameworkItem = this.frontendFrameworkSelection.find(
+        (item) => item.itemName === this.selectedFrontendFramework
+      )
+
+      return `webpacker:install:${frameworkItem.cliName}`
     }
   }
 }

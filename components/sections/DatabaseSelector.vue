@@ -24,9 +24,10 @@
             <radio-button-selector
               v-for="item in items"
               :key="item.itemName"
+              :selected-item="selectedDatabase"
+              :group="item.group"
               :item-name="item.itemName"
               :description="item.description"
-              v-model="selectedDatabase"
               ><component :is="item.logo"
             /></radio-button-selector>
           </ul>
