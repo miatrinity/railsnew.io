@@ -27,7 +27,7 @@
             type="checkbox"
             class="form-checkbox h-4 w-4 text-indigo-600 transition duration-150 ease-in-out"
             :checked="checked"
-            @change="updateCheckboxState"
+            @change.stop.prevent="updateCheckboxState"
           />
         </div>
       </div>
@@ -54,8 +54,8 @@ export default {
   },
   methods: {
     updateCheckboxState(event) {
-      event.preventDefault()
-      event.stopPropagation()
+      // event.preventDefault()
+      // event.stopPropagation()
       eventBus.$emit('checkboxUpdated', this.itemName)
     }
   }

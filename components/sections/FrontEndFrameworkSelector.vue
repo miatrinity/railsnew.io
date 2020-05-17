@@ -5,7 +5,7 @@
         <div class="bg-white overflow-hidden sm:rounded-lg sm:shadow">
           <div
             id="rails-menu-card-header"
-            class="bg-white px-4 py-5 border-b border-gray-200 sm:px-6"
+            class="bg-gray-200 px-4 py-5 border-b border-gray-200 sm:px-6"
           >
             <div
               class="-ml-4 -mt-4 flex justify-between items-center flex-wrap sm:flex-no-wrap"
@@ -27,7 +27,7 @@
             <radio-button-selector
               v-for="item in items"
               :key="item.itemName"
-              :selected-item="selectedDatabase"
+              :selected-item="selectedFrontEndFramework"
               :group="item.group"
               :item-name="item.itemName"
               :description="item.description"

@@ -6,7 +6,7 @@
       id="rails-new-command-generator-holder"
       class="flex-col bg-gray-700 py-10 z-50"
     >
-      <app-name-input />
+      <app-name-input :app-name="appName" />
       <command-line
         :app-name="appName"
         :selected-database="selectedDatabase"
@@ -20,8 +20,16 @@
         :email-flags="emailFlags"
         :testing-flags="testingFlags"
       />
+      <command-line-buttons />
     </div>
     <br />
+    <section-header title="Choose Your Base" />
+    <choose-your-base
+      :items="chooseYourBaseSelection"
+      :selected-base="selectedBase"
+    />
+    <br />
+    <section-header title="Customize A'la Carte" />
     <database-selector
       :items="databaseSelection"
       :selected-database="selectedDatabase"
@@ -43,21 +51,19 @@
     />
     <br />
     <testing :items="testingFlags" />
-    <br />
-    <page-footer />
-    <br />
-    <newsletter />
   </div>
 </template>
 
 <script>
 import Vue from 'vue'
 import eventBus from '@/eventBus.js'
+
 import MainHero from '@/components/layout/MainHero'
-import PageFooter from '@/components/layout/PageFooter'
-import Newsletter from '@/components/layout/Newsletter'
 import AppNameInput from '@/components/sections/AppNameInput'
 import CommandLine from '@/components/sections/CommandLine'
+import CommandLineButtons from '@/components/sections/CommandLineButtons'
+import SectionHeader from '@/components/sections/SectionHeader'
+import ChooseYourBase from '@/components/sections/ChooseYourBase'
 import DatabaseSelector from '@/components/sections/DatabaseSelector'
 import GuestFavorites from '@/components/sections/GuestFavorites'
 import Starters from '@/components/sections/Starters'
@@ -72,8 +78,9 @@ export default {
     MainHero,
     AppNameInput,
     CommandLine,
-    PageFooter,
-    Newsletter,
+    CommandLineButtons,
+    SectionHeader,
+    ChooseYourBase,
     DatabaseSelector,
     GuestFavorites,
     Starters,
@@ -85,31 +92,35 @@ export default {
   },
   data: () => ({
     isOpen: false,
-    appName: 'clunky_ninja',
+    appName: 'my_awesome_app',
     selectedDatabase: 'SQLite',
+    selectedBase: 'The Minimalist',
     selectedFrontendFramework: '',
-    setMenus: [
+    chooseYourBaseSelection: [
       {
         itemName: 'The Minimalist',
         description: '--skip-everything',
-        checked: true
+        logo: 'MinimalistLogo',
+        group: 'choose-your-base'
       },
       {
         itemName: 'The Early Days',
-        description: 'Skip javascript, turbolinks, webpack',
-        checked: false
+        description: 'Somewhere between the two, circa 2008',
+        logo: 'TheEarlyDaysLogo',
+        group: 'choose-your-base'
       },
       {
         itemName: 'Omakase',
         description: 'Omakase is fine, but... (customize below)',
-        checked: false
+        logo: 'OmakaseLogo',
+        group: 'choose-your-base'
       }
     ],
     databaseSelection: [
       {
         itemName: 'SQLite',
         description:
-          'The current default. Official recommendation from the @librarycongress for archival of datasets!',
+          'The current default. Recommended by @librarycongress for archival!',
         logo: 'SqLiteLogo',
         cliName: 'sqlite3',
         group: 'database'
@@ -117,7 +128,7 @@ export default {
       {
         itemName: 'Postgres',
         description:
-          'The real default. No-brainer if you ever plan to leave development',
+          'The real default. No-brainer if you ever plan to leave development.',
         logo: 'PostgresLogo',
         cliName: 'postgresql',
         group: 'database'
@@ -185,7 +196,7 @@ export default {
       {
         itemName: '--skip-active-record',
         description: 'Skip Active Record files',
-        checked: true
+        checked: false
       },
       {
         itemName: '--skip-active-storage',
@@ -230,11 +241,6 @@ export default {
       {
         itemName: '--skip-webpack-install',
         description: "Don't run Webpack install",
-        checked: true
-      },
-      {
-        itemName: '--api',
-        description: 'Just skip the whole frontend altogether!',
         checked: true
       }
     ],
@@ -318,7 +324,89 @@ export default {
     // probably --skip-namespace comes here?
     // It is highly recommended that the isolate_namespace line be left within the Engine class definition. Without it, classes generated in an engine may conflict with an application.
   }),
+  methods: {
+    setUpOmakase() {
+      this.selectedDatabase = 'SQLite'
+      this.selectedFrontendFramework = ''
+      Vue.set(this.guestFavoriteFlags[0], 'checked', false)
+      Vue.set(this.guestFavoriteFlags[1], 'checked', false)
+      Vue.set(this.guestFavoriteFlags[2], 'checked', false)
+      Vue.set(this.starterFlags[0], 'checked', false)
+      Vue.set(this.starterFlags[1], 'checked', false)
+      Vue.set(this.starterFlags[2], 'checked', false)
+      Vue.set(this.starterFlags[3], 'checked', false)
+      Vue.set(this.starterFlags[4], 'checked', false)
+      Vue.set(this.frameworkFlags[0], 'checked', false)
+      Vue.set(this.frameworkFlags[1], 'checked', false)
+      Vue.set(this.frameworkFlags[2], 'checked', false)
+      Vue.set(this.frameworkFlags[3], 'checked', false)
+      Vue.set(this.emailFlags[0], 'checked', false)
+      Vue.set(this.emailFlags[1], 'checked', false)
+      Vue.set(this.leFrontendFlags[0], 'checked', false)
+      Vue.set(this.leFrontendFlags[1], 'checked', false)
+      Vue.set(this.leFrontendFlags[2], 'checked', false)
+      Vue.set(this.leFrontendFlags[3], 'checked', false)
+      Vue.set(this.testingFlags[0], 'checked', false)
+      Vue.set(this.testingFlags[1], 'checked', false)
+    },
+    setUpTheMinimalist() {
+      this.selectedDatabase = 'SQLite'
+      this.selectedFrontendFramework = ''
+      Vue.set(this.guestFavoriteFlags[0], 'checked', true)
+      Vue.set(this.guestFavoriteFlags[1], 'checked', true)
+      Vue.set(this.guestFavoriteFlags[2], 'checked', true)
+      Vue.set(this.starterFlags[0], 'checked', true)
+      Vue.set(this.starterFlags[1], 'checked', true)
+      Vue.set(this.starterFlags[2], 'checked', true)
+      Vue.set(this.starterFlags[3], 'checked', true)
+      Vue.set(this.starterFlags[4], 'checked', false)
+      Vue.set(this.frameworkFlags[0], 'checked', true)
+      Vue.set(this.frameworkFlags[1], 'checked', false)
+      Vue.set(this.frameworkFlags[2], 'checked', true)
+      Vue.set(this.frameworkFlags[3], 'checked', true)
+      Vue.set(this.emailFlags[0], 'checked', true)
+      Vue.set(this.emailFlags[1], 'checked', true)
+      Vue.set(this.leFrontendFlags[0], 'checked', true)
+      Vue.set(this.leFrontendFlags[1], 'checked', true)
+      Vue.set(this.leFrontendFlags[2], 'checked', true)
+      Vue.set(this.leFrontendFlags[3], 'checked', true)
+      Vue.set(this.testingFlags[0], 'checked', true)
+      Vue.set(this.testingFlags[1], 'checked', true)
+    },
+    setUpTheEarlyDays() {
+      this.selectedDatabase = 'SQLite'
+      this.selectedFrontendFramework = ''
+      Vue.set(this.guestFavoriteFlags[0], 'checked', true)
+      Vue.set(this.guestFavoriteFlags[1], 'checked', true)
+      Vue.set(this.guestFavoriteFlags[2], 'checked', true)
+      Vue.set(this.starterFlags[0], 'checked', false)
+      Vue.set(this.starterFlags[1], 'checked', false)
+      Vue.set(this.starterFlags[2], 'checked', true)
+      Vue.set(this.starterFlags[3], 'checked', false)
+      Vue.set(this.starterFlags[4], 'checked', false)
+      Vue.set(this.frameworkFlags[0], 'checked', true)
+      Vue.set(this.frameworkFlags[1], 'checked', false)
+      Vue.set(this.frameworkFlags[2], 'checked', true)
+      Vue.set(this.frameworkFlags[3], 'checked', true)
+      Vue.set(this.emailFlags[0], 'checked', false)
+      Vue.set(this.emailFlags[1], 'checked', true)
+      Vue.set(this.leFrontendFlags[0], 'checked', false)
+      Vue.set(this.leFrontendFlags[1], 'checked', true)
+      Vue.set(this.leFrontendFlags[2], 'checked', true)
+      Vue.set(this.leFrontendFlags[3], 'checked', true)
+      Vue.set(this.testingFlags[0], 'checked', false)
+      Vue.set(this.testingFlags[1], 'checked', true)
+    }
+  },
   mounted() {
+    eventBus.$on('showModal', () => {
+      this.exampleModalShowing = true
+    })
+
+    eventBus.$on('appNameUpdated', (appNameData) => {
+      this.appName = appNameData
+    })
+
     eventBus.$on('checkboxUpdated', (itemName) => {
       ;[
         this.guestFavoriteFlags,
@@ -341,20 +429,34 @@ export default {
     })
 
     eventBus.$on('radioButtonUpdated', (itemName) => {
-      // this.selectedDatabase = itemName
-      ;[this.databaseSelection, this.frontendFrameworkSelection].forEach(
-        (section) => {
-          const itemNames = section.map((item) => item.itemName)
+      ;[
+        this.databaseSelection,
+        this.frontendFrameworkSelection,
+        this.chooseYourBaseSelection
+      ].forEach((section) => {
+        const itemNames = section.map((item) => item.itemName)
 
-          if (itemNames.includes(itemName)) {
-            if (section[0].group === 'database') {
-              this.selectedDatabase = itemName
-            } else if (section[0].group === 'frontend-framework') {
-              this.selectedFrontendFramework = itemName
+        if (itemNames.includes(itemName)) {
+          if (section[0].group === 'choose-your-base') {
+            this.selectedBase = itemName
+            if (itemName === 'Omakase') {
+              this.setUpOmakase()
+            } else if (itemName === 'The Minimalist') {
+              this.setUpTheMinimalist()
+            } else if (itemName === 'The Early Days') {
+              this.setUpTheEarlyDays()
             }
+          } else if (section[0].group === 'database') {
+            this.selectedDatabase = itemName
+          } else if (section[0].group === 'frontend-framework') {
+            Vue.set(this.starterFlags[0], 'checked', false)
+            Vue.set(this.leFrontendFlags[1], 'checked', false)
+            Vue.set(this.leFrontendFlags[3], 'checked', false)
+
+            this.selectedFrontendFramework = itemName
           }
         }
-      )
+      })
     })
   }
 }

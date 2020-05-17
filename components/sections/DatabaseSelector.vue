@@ -1,11 +1,11 @@
 <template>
-  <div id="rails-menu-card-holder" class="bg-grey-100">
+  <div id="rails-menu-card-holder">
     <div class="max-w-2xl mx-auto py-6 sm:px-6 lg:px-8">
       <div id="rails-menu-card" class="max-w-none mx-auto">
         <div class="bg-white overflow-hidden sm:rounded-lg sm:shadow">
           <div
             id="rails-menu-card-header"
-            class="bg-white px-4 py-5 border-b border-gray-200 sm:px-6"
+            class="bg-gray-200 px-4 py-5 border-b border-gray-200 sm:px-6"
           >
             <div
               class="-ml-4 -mt-4 flex justify-between items-center flex-wrap sm:flex-no-wrap"

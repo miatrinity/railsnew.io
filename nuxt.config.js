@@ -44,8 +44,13 @@ export default {
     // Doc: https://axios.nuxtjs.org/usage
     '@nuxtjs/axios',
     // Doc: https://github.com/nuxt-community/dotenv-module
-    '@nuxtjs/dotenv'
+    '@nuxtjs/dotenv',
+    '@nuxtjs/toast'
   ],
+  toast: {
+    position: 'bottom-center',
+    register: []
+  },
   /*
    ** Axios module configuration
    ** See https://axios.nuxtjs.org/options

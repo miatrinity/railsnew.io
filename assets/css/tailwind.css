@@ -24,3 +24,12 @@ body {
   position: sticky;
   top: 0px;
 }
+
+.toasted.toasted-primary.copied-toast {
+  background-color: #276749;
+  font: 1em sans-serif;
+  padding: 20px 20px;
+  color: #F0FFF4;
+  border-radius: 0.5rem;
+  
+}

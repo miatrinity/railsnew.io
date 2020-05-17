@@ -33,7 +33,7 @@
             :name="group"
             :value="itemName"
             class="form-radio h-4 w-4 text-indigo-600 transition duration-150 ease-in-out"
-            @change="updateRadioButtonState"
+            @change.stop.prevent="updateRadioButtonState"
           />
         </div>
       </div>

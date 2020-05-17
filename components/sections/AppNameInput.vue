@@ -6,9 +6,9 @@
       type="text"
       name="app-name"
       autocomplete="off"
-      placeholder="my_cool_app"
+      placeholder="my_awesome_app"
       @keyup="updateAppName"
-      @focus="clearAppName"
+      @focusin="clearAppName"
     />
   </div>
 </template>
@@ -17,11 +17,6 @@
 import eventBus from '@/eventBus.js'
 
 export default {
-  data() {
-    return {
-      appName: 'clunky_ninja'
-    }
-  },
   created() {
     eventBus.$emit('setInitialAppName', this.appName)
   },
@@ -32,6 +27,12 @@ export default {
     clearAppName() {
       this.appName = ''
       eventBus.$emit('appNameUpdated', this.appName)
+    }
+  },
+  props: {
+    appName: {
+      type: String,
+      default: ''
     }
   }
 }

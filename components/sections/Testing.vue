@@ -1,9 +1,11 @@
 <template>
-  <check-box-section
-    :items="items"
-    section-name="Testing 🔬"
-    description="MiniSpec or RSpec, that is the real quesiton!"
-  />
+  <div class="mb-20">
+    <check-box-section
+      :items="items"
+      section-name="Testing 🔬"
+      description="MiniSpec or RSpec, that is the real quesiton!"
+    />
+  </div>
 </template>
 
 <script>
