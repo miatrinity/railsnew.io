@@ -8,7 +8,7 @@
     </h1>
 
     <div class="mb-20">
-      <img width="1000" src="~/assets/demo1.gif" />
+      <img src="~/assets/demo1.gif" />
     </div>
 
     <h1
@@ -19,7 +19,7 @@
     </h1>
 
     <div class="mb-20">
-      <img width="1000" src="~/assets/demo2.gif" />
+      <img src="~/assets/demo2.gif" />
     </div>
 
     <h1
@@ -29,7 +29,7 @@
     </h1>
 
     <div class="mb-20">
-      <img width="1000" src="~/assets/demo3.gif" />
+      <img src="~/assets/demo3.gif" />
     </div>
 
     <h1
@@ -39,7 +39,7 @@
     </h1>
 
     <div class="mb-20">
-      <img width="1000" src="~/assets/demo4.gif" />
+      <img src="~/assets/demo4.gif" />
     </div>
   </div>
 </template>

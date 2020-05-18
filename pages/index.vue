@@ -105,7 +105,7 @@ export default {
       },
       {
         itemName: 'The Early Days',
-        description: 'Somewhere between the two, circa 2008',
+        description: 'Somewhere between the two, circa 2007',
         logo: 'TheEarlyDaysLogo',
         group: 'choose-your-base'
       },
