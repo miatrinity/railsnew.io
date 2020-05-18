@@ -2,7 +2,7 @@
   <check-box-section
     :items="items"
     section-name="Guest Favorites 🌶️"
-    description="The raison d'être of our humble estamblishment."
+    description="The raison d'être of our humble establishment."
   />
 </template>
 
