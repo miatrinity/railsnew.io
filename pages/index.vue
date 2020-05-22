@@ -9,6 +9,8 @@
       <app-name-input :app-name="appName" />
       <command-line
         :app-name="appName"
+        :selected-js-framework="selectedJsFramework"
+        :selected-css-framework="selectedCssFramework"
         :selected-database="selectedDatabase"
         :selected-frontend-framework="selectedFrontendFramework"
         :database-selection="databaseSelection"
@@ -28,7 +30,16 @@
       :items="chooseYourBaseSelection"
       :selected-base="selectedBase"
     />
+    <section-header title="Add Extra Ingredients (powered by railsbytes.com)" />
+    <extra-ingredients-js-framework
+      :items="extraIngredientsJsFrameworkSelection"
+      :selected-js-framework="selectedJsFramework"
+    />
     <br />
+    <extra-ingredients-css-framework
+      :items="extraIngredientsCssFrameworkSelection"
+      :selected-css-framework="selectedCssFramework"
+    />
     <section-header title="Customize A'la Carte" />
     <database-selector
       :items="databaseSelection"
@@ -63,6 +74,8 @@ import AppNameInput from '@/components/sections/AppNameInput'
 import CommandLine from '@/components/sections/CommandLine'
 import CommandLineButtons from '@/components/sections/CommandLineButtons'
 import SectionHeader from '@/components/sections/SectionHeader'
+import ExtraIngredientsJsFramework from '@/components/sections/ExtraIngredientsJsFramework'
+import ExtraIngredientsCssFramework from '@/components/sections/ExtraIngredientsCssFramework'
 import ChooseYourBase from '@/components/sections/ChooseYourBase'
 import DatabaseSelector from '@/components/sections/DatabaseSelector'
 import GuestFavorites from '@/components/sections/GuestFavorites'
@@ -80,6 +93,8 @@ export default {
     CommandLine,
     CommandLineButtons,
     SectionHeader,
+    ExtraIngredientsJsFramework,
+    ExtraIngredientsCssFramework,
     ChooseYourBase,
     DatabaseSelector,
     GuestFavorites,
@@ -95,7 +110,29 @@ export default {
     appName: 'my_awesome_app',
     selectedDatabase: 'SQLite',
     selectedBase: 'The Minimalist',
+    selectedJsFramework: '',
+    selectedCssFramework: '',
     selectedFrontendFramework: '',
+    extraIngredientsJsFrameworkSelection: [
+      {
+        itemName: 'Stimulus.js',
+        group: 'extra-ingredients-js-framework'
+      },
+      {
+        itemName: 'Stimulus.js + Stimulus Reflex',
+        group: 'extra-ingredients-js-framework'
+      }
+    ],
+    extraIngredientsCssFrameworkSelection: [
+      {
+        itemName: 'TailwindCSS',
+        group: 'extra-ingredients-css-framework'
+      },
+      {
+        itemName: 'Bootstrap',
+        group: 'extra-ingredients-css-framework'
+      }
+    ],
     chooseYourBaseSelection: [
       {
         itemName: 'The Minimalist',
@@ -163,7 +200,7 @@ export default {
       {
         itemName: '--skip-gemfile',
         description: "Don't create a Gemfile",
-        checked: true
+        checked: false
       },
       {
         itemName: '--skip-git',
@@ -178,7 +215,7 @@ export default {
       {
         itemName: '--skip-bundle',
         description: "Don't run bundle install",
-        checked: true
+        checked: false
       },
       {
         itemName: '--skip-puma',
@@ -253,7 +290,7 @@ export default {
         group: 'frontend-framework'
       },
       {
-        itemName: 'Stimulus.js',
+        itemName: 'Stimulus',
         description: 'stimulus yoo',
         logo: 'TODO',
         cliName: 'stimulus',
@@ -422,7 +459,6 @@ export default {
           const itemIndex = section.findIndex(
             (item) => item.itemName === itemName
           )
-
           Vue.set(section[itemIndex], 'checked', !section[itemIndex].checked)
         }
       })
@@ -430,6 +466,8 @@ export default {
 
     eventBus.$on('radioButtonUpdated', (itemName) => {
       ;[
+        this.extraIngredientsJsFrameworkSelection,
+        this.extraIngredientsCssFrameworkSelection,
         this.databaseSelection,
         this.frontendFrameworkSelection,
         this.chooseYourBaseSelection
@@ -437,7 +475,19 @@ export default {
         const itemNames = section.map((item) => item.itemName)
 
         if (itemNames.includes(itemName)) {
-          if (section[0].group === 'choose-your-base') {
+          if (section[0].group === 'extra-ingredients-js-framework') {
+            this.selectedJsFramework = itemName
+            // do NOT --skip-gemfile
+            Vue.set(this.starterFlags[0], 'checked', false)
+            // do NOT --skip-bundler
+            Vue.set(this.starterFlags[3], 'checked', false)
+            // do NOT --skip-javascript - otherwise it clashes with the railsbyte stuff
+            Vue.set(this.leFrontendFlags[1], 'checked', false)
+            // DO --skip-webpack-install - the railsbyte needs it!
+            Vue.set(this.leFrontendFlags[3], 'checked', true)
+          } else if (section[0].group === 'extra-ingredients-css-framework') {
+            this.selectedCssFramework = itemName
+          } else if (section[0].group === 'choose-your-base') {
             this.selectedBase = itemName
             if (itemName === 'Omakase') {
               this.setUpOmakase()

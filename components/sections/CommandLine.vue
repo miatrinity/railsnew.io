@@ -18,6 +18,14 @@ export default {
       type: String,
       default: 'SQLite'
     },
+    selectedJsFramework: {
+      type: String,
+      default: ''
+    },
+    selectedCssFramework: {
+      type: String,
+      default: ''
+    },
     selectedFrontendFramework: {
       type: String,
       default: ''
@@ -75,7 +83,7 @@ export default {
     fullCommandLine() {
       return `rails new ${
         this.appName
-      } ${this.flagForSelectedDatabase()} ${this.flagForSelectedFrontendFramework()} ${[
+      } ${this.flagForSelectedDatabase()} ${this.flagForSelectedRailsTemplate()} ${this.flagForSelectedFrontendFramework()} ${[
         ...this.guestFavoriteFlags,
         ...this.starterFlags,
         ...this.frameworkFlags,
@@ -117,6 +125,31 @@ export default {
       )
 
       return `--webpack=${frameworkItem.cliName}`
+    },
+    flagForSelectedRailsTemplate() {
+      if (this.selectedJsFramework === '' && this.selectedCssFramework === '')
+        return ''
+
+      const templateCombosToTemplateURL = {
+        'Stimulus.js:': 'https://www.railsbytes.com/script/V33s33',
+        'Stimulus.js:TailwindCSS': 'Stimulus + Tailwind',
+        'Stimulus.js:Bootstrap': 'Stimulus + BootStrap',
+        'Stimulus.js + Stimulus Reflex:':
+          'https://www.railsbytes.com/script/zr4s0Y',
+        'Stimulus.js + Stimulus Reflex:TailwindCSS':
+          'Stimulus + Stimulus Reflex + Tailwind',
+        'Stimulus.js + Stimulus Reflex:Bootstrap':
+          'Stimulus + Stimulus Reflex + Bootstrap'
+      }
+
+      const selectedRailsBytes = [
+        this.selectedJsFramework,
+        this.selectedCssFramework
+      ].join(':')
+
+      const templateURL = templateCombosToTemplateURL[selectedRailsBytes]
+
+      return `--template "${templateURL}"`
     }
   }
 }
