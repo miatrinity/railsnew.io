@@ -135,7 +135,7 @@ export default {
         'Stimulus.js:TailwindCSS': 'Stimulus + Tailwind',
         'Stimulus.js:Bootstrap': 'Stimulus + BootStrap',
         'Stimulus.js + Stimulus Reflex:':
-          'https://www.railsbytes.com/script/zr4s0Y',
+          'https://www.railsbytes.com/public/templates/zr4s0Y',
         'Stimulus.js + Stimulus Reflex:TailwindCSS':
           'Stimulus + Stimulus Reflex + Tailwind',
         'Stimulus.js + Stimulus Reflex:Bootstrap':
