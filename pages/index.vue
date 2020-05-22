@@ -483,8 +483,13 @@ export default {
             Vue.set(this.starterFlags[3], 'checked', false)
             // do NOT --skip-javascript - otherwise it clashes with the railsbyte stuff
             Vue.set(this.leFrontendFlags[1], 'checked', false)
-            // DO --skip-webpack-install - the railsbyte needs it!
+            // DO --skip-webpack-install - the railsbyte is already installing webpack
             Vue.set(this.leFrontendFlags[3], 'checked', true)
+
+            // do NOT --skip-action-cable if Stimulus Reflex is being used
+            if (itemName.includes('Reflex')) {
+              Vue.set(this.frameworkFlags[3], 'checked', false)
+            }
           } else if (section[0].group === 'extra-ingredients-css-framework') {
             this.selectedCssFramework = itemName
           } else if (section[0].group === 'choose-your-base') {
