@@ -129,12 +129,12 @@ export default {
         ':Bootstrap': 'https://www.railsbytes.com/script/VMys5p',
 
         // combos
-        'Stimulus.js:TailwindCSS': 'Stimulus + Tailwind',
-        'Stimulus.js:Bootstrap': 'Stimulus + BootStrap',
+        'Stimulus.js:TailwindCSS': 'https://www.railsbytes.com/script/zyvsbW',
+        'Stimulus.js:Bootstrap': 'https://www.railsbytes.com/script/xjNsAn',
         'Stimulus.js + Stimulus Reflex:TailwindCSS':
-          'Stimulus + Stimulus Reflex + Tailwind',
+          'https://www.railsbytes.com/script/z0gsd8',
         'Stimulus.js + Stimulus Reflex:Bootstrap':
-          'Stimulus + Stimulus Reflex + Bootstrap'
+          'https://www.railsbytes.com/script/XnJs52'
       }
 
       const selectedRailsBytes = [
