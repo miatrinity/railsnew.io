@@ -39,9 +39,13 @@
 
 <script>
 import RadioButtonSelector from '@/components/molecules/RadioButtonSelector'
+import StimulusLogo from '@/components/svgs/StimulusLogo'
+import StimulusReflexLogo from '@/components/svgs/StimulusReflexLogo'
 
 export default {
   components: {
+    StimulusLogo,
+    StimulusReflexLogo,
     RadioButtonSelector
   },
   props: {
