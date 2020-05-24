@@ -19,12 +19,16 @@
           </div>
         </div>
       </div>
+      <span v-show="disabled" class="text-yellow-500 mr-4"
+        >⚠️ Set and locked by a railsbyte!</span
+      >
       <div>
         <input
           id="comments"
           type="checkbox"
           class="form-checkbox h-4 w-4 text-indigo-600 transition duration-150 ease-in-out"
           :checked="checked"
+          :disabled="disabled"
           @change.stop.prevent="updateCheckboxState"
         />
       </div>
@@ -47,6 +51,9 @@ export default {
       default: ''
     },
     checked: {
+      type: Boolean
+    },
+    disabled: {
       type: Boolean
     }
   },

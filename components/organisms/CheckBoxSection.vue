@@ -27,6 +27,7 @@
               :item-name="item.itemName"
               :description="item.description"
               :checked="item.checked"
+              :disabled="item.disabled"
             />
           </ul>
         </div>

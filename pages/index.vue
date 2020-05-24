@@ -199,45 +199,53 @@ export default {
       {
         itemName: '--skip-spring',
         description: 'Rails application preloader',
-        checked: true
+        checked: true,
+        disabled: false
       },
       {
         itemName: '--skip-listen',
         description:
           'Listens to file modifications and notifies you about the changes',
-        checked: true
+        checked: true,
+        disabled: false
       },
       {
         itemName: '--skip-bootsnap',
         description: 'Boot large Ruby/Rails apps faster',
-        checked: true
+        checked: true,
+        disabled: false
       }
     ],
     starterFlags: [
       {
         itemName: '--skip-gemfile',
         description: "Don't create a Gemfile",
-        checked: false
+        checked: false,
+        disabled: false
       },
       {
         itemName: '--skip-git',
         description: 'Skip .gitignore file',
-        checked: true
+        checked: true,
+        disabled: false
       },
       {
         itemName: '--skip-keeps',
         description: 'Skip source control .keep files',
-        checked: true
+        checked: true,
+        disabled: false
       },
       {
         itemName: '--skip-bundle',
         description: "Don't run bundle install",
-        checked: false
+        checked: false,
+        disabled: false
       },
       {
         itemName: '--skip-puma',
         description: 'Skip Puma-related files',
-        checked: false
+        checked: false,
+        disabled: false
       }
       // NOTE: add possibility to specify starter template
     ],
@@ -245,22 +253,26 @@ export default {
       {
         itemName: '--skip-action-text',
         description: 'Skip Action Text gem',
-        checked: true
+        checked: true,
+        disabled: false
       },
       {
         itemName: '--skip-active-record',
         description: 'Skip Active Record files',
-        checked: false
+        checked: false,
+        disabled: false
       },
       {
         itemName: '--skip-active-storage',
         description: 'Skip Active Storage files',
-        checked: true
+        checked: true,
+        disabled: false
       },
       {
         itemName: '--skip-action-cable',
         description: 'Skip Action Cable files',
-        checked: true
+        checked: true,
+        disabled: false
       }
     ],
     emailFlags: [
@@ -268,34 +280,40 @@ export default {
         itemName: '--skip-action-mailer',
         description:
           'Send emails from your application using mailer classes and views',
-        checked: true
+        checked: true,
+        disabled: false
       },
       {
         itemName: '--skip-action-mailbox',
         description: 'Routes incoming emails to controller-like mailboxes',
-        checked: true
+        checked: true,
+        disabled: false
       }
     ],
     leFrontendFlags: [
       {
         itemName: '--skip-sprockets',
         description: 'Skip Sprockets files',
-        checked: true
+        checked: true,
+        disabled: false
       },
       {
         itemName: '--skip-javascript',
         description: 'Skip JavaScript files',
-        checked: true
+        checked: true,
+        disabled: false
       },
       {
         itemName: '--skip-turbolinks',
         description: 'Skip turbolinks gem',
-        checked: true
+        checked: true,
+        disabled: false
       },
       {
         itemName: '--skip-webpack-install',
         description: "Don't run Webpack install",
-        checked: true
+        checked: true,
+        disabled: false
       }
     ],
     frontendFrameworkSelection: [
@@ -346,12 +364,14 @@ export default {
       {
         itemName: '--skip-test',
         description: 'Skip test files',
-        checked: true
+        checked: true,
+        disabled: false
       },
       {
         itemName: '--skip-system-test',
         description: 'Skip system test files',
-        checked: true
+        checked: true,
+        disabled: false
       }
     ],
     versionSelector: [
@@ -359,17 +379,20 @@ export default {
         itemName: '--edge',
         description:
           'Setup the application with Gemfile pointing to Rails repository',
-        checked: true
+        checked: true,
+        disabled: false
       },
       {
         itemName: '6.0.3',
         description: 'Latest version of the Rails 6 series',
-        checked: true
+        checked: true,
+        disabled: false
       },
       {
         itemName: '5.2.4.2',
         description: 'Latest version of the Rails 5 series',
-        checked: true
+        checked: true,
+        disabled: false
       }
     ]
   }),
@@ -445,6 +468,10 @@ export default {
       Vue.set(this.leFrontendFlags[3], 'checked', true)
       Vue.set(this.testingFlags[0], 'checked', false)
       Vue.set(this.testingFlags[1], 'checked', true)
+    },
+    setCheckboxState(field, checked) {
+      Vue.set(field, 'checked', checked)
+      Vue.set(field, 'disabled', true)
     }
   },
   mounted() {
@@ -489,18 +516,26 @@ export default {
         if (itemNames.includes(itemName)) {
           if (section[0].group === 'extra-ingredients-js-framework') {
             this.selectedJsFramework = itemName
-            // do NOT --skip-gemfile
-            Vue.set(this.starterFlags[0], 'checked', false)
-            // do NOT --skip-bundler
-            Vue.set(this.starterFlags[3], 'checked', false)
-            // do NOT --skip-javascript - otherwise it clashes with the railsbyte stuff
-            Vue.set(this.leFrontendFlags[1], 'checked', false)
-            // DO --skip-webpack-install - the railsbyte is already installing webpack
-            Vue.set(this.leFrontendFlags[3], 'checked', true)
+            if (itemName === '') {
+              Vue.set(this.starterFlags[0], 'disabled', false)
+              Vue.set(this.starterFlags[3], 'disabled', false)
+              Vue.set(this.leFrontendFlags[1], 'disabled', false)
+              Vue.set(this.leFrontendFlags[3], 'disabled', false)
+              Vue.set(this.frameworkFlags[3], 'disabled', false)
+            } else {
+              // do NOT --skip-gemfile
+              this.setCheckboxState(this.starterFlags[0], false)
+              // do NOT --skip-bundler
+              this.setCheckboxState(this.starterFlags[3], false)
+              // do NOT --skip-javascript - otherwise it clashes with the railsbyte stuff
+              this.setCheckboxState(this.leFrontendFlags[1], false)
+              // DO --skip-webpack-install - the railsbyte is already installing webpack
+              this.setCheckboxState(this.leFrontendFlags[3], true)
 
-            // do NOT --skip-action-cable if Stimulus Reflex is being used
-            if (itemName.includes('Reflex')) {
-              Vue.set(this.frameworkFlags[3], 'checked', false)
+              // do NOT --skip-action-cable if Stimulus Reflex is being used
+              if (itemName.includes('Reflex')) {
+                this.setCheckboxState(this.frameworkFlags[3], false)
+              }
             }
           } else if (section[0].group === 'extra-ingredients-css-framework') {
             this.selectedCssFramework = itemName
