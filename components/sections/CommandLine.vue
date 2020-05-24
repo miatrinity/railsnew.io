@@ -131,11 +131,16 @@ export default {
         return ''
 
       const templateCombosToTemplateURL = {
+        // single templates
         'Stimulus.js:': 'https://www.railsbytes.com/script/V33s33',
-        'Stimulus.js:TailwindCSS': 'Stimulus + Tailwind',
-        'Stimulus.js:Bootstrap': 'Stimulus + BootStrap',
         'Stimulus.js + Stimulus Reflex:':
           'https://www.railsbytes.com/script/zr4s0Y',
+        ':TailwindCSS': 'https://www.railsbytes.com/script/X8BsGy',
+        ':Bootstrap': 'https://www.railsbytes.com/script/VMys5p',
+
+        // combos
+        'Stimulus.js:TailwindCSS': 'Stimulus + Tailwind',
+        'Stimulus.js:Bootstrap': 'Stimulus + BootStrap',
         'Stimulus.js + Stimulus Reflex:TailwindCSS':
           'Stimulus + Stimulus Reflex + Tailwind',
         'Stimulus.js + Stimulus Reflex:Bootstrap':
@@ -146,6 +151,8 @@ export default {
         this.selectedJsFramework,
         this.selectedCssFramework
       ].join(':')
+
+      // console.log('>>' + selectedRailsBytes + '<<')
 
       const templateURL = templateCombosToTemplateURL[selectedRailsBytes]
 

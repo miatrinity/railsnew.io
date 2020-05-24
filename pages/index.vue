@@ -492,6 +492,15 @@ export default {
             }
           } else if (section[0].group === 'extra-ingredients-css-framework') {
             this.selectedCssFramework = itemName
+            if (
+              itemName.includes('Tailwind') ||
+              itemName.includes('Bootstrap')
+            ) {
+              // do NOT --skip-javascript - otherwise it clashes with the railsbyte stuff
+              Vue.set(this.leFrontendFlags[1], 'checked', false)
+              // DO --skip-webpack-install - the railsbyte is already installing webpack
+              Vue.set(this.leFrontendFlags[3], 'checked', true)
+            }
           } else if (section[0].group === 'choose-your-base') {
             this.selectedBase = itemName
             if (itemName === 'Omakase') {
