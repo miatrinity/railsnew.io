@@ -96,16 +96,6 @@ export default {
         .join(' ')}`.replace(/  +/g, ' ')
     }
   },
-  //  created() {
-  // eventBus.$on('setInitialAppName', (appNameData) => {
-  //   this.appName = appNameData
-  // })
-
-  // eventBus.$on('appNameUpdated', (appNameData) => {
-  //   this.appName = appNameData
-  //   eventBus.$emit('appNameUpdated', this.appName)
-  // })
-  // },
   methods: {
     flagForSelectedDatabase() {
       if (this.selectedDatabase === 'SQLite') {

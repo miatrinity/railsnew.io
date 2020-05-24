@@ -115,21 +115,38 @@ export default {
     selectedFrontendFramework: '',
     extraIngredientsJsFrameworkSelection: [
       {
+        itemName: '',
+        description: 'None',
+        group: 'extra-ingredients-js-framework'
+      },
+      {
         itemName: 'Stimulus.js',
+        description:
+          'A modest JavaScript framework for the HTML you already have.',
         group: 'extra-ingredients-js-framework'
       },
       {
         itemName: 'Stimulus.js + Stimulus Reflex',
+        description: 'Craft modern, reactive web interfaces',
         group: 'extra-ingredients-js-framework'
       }
     ],
     extraIngredientsCssFrameworkSelection: [
       {
+        itemName: '',
+        description: 'None',
+        group: 'extra-ingredients-css-framework'
+      },
+      {
         itemName: 'TailwindCSS',
+        description:
+          'A utility-first CSS framework for rapidly building custom designs',
         group: 'extra-ingredients-css-framework'
       },
       {
         itemName: 'Bootstrap',
+        description:
+          'Quickly design and customize responsive mobile-first sites',
         group: 'extra-ingredients-css-framework'
       }
     ],
@@ -355,11 +372,6 @@ export default {
         checked: true
       }
     ]
-    // Generate engine
-    // rails plugin new blorgh --mountable --full - what is full?
-    // read: https://guides.rubyonrails.org/engines.html
-    // probably --skip-namespace comes here?
-    // It is highly recommended that the isolate_namespace line be left within the Engine class definition. Without it, classes generated in an engine may conflict with an application.
   }),
   methods: {
     setUpOmakase() {
