@@ -7,6 +7,7 @@
       class="flex-col bg-gray-700 py-10 z-50"
     >
       <app-name-input :app-name="appName" />
+      <!-- :frontend-framework-selection="frontendFrameworkSelection" -->
       <command-line
         :app-name="appName"
         :selected-js-framework="selectedJsFramework"
@@ -14,7 +15,6 @@
         :selected-database="selectedDatabase"
         :selected-frontend-framework="selectedFrontendFramework"
         :database-selection="databaseSelection"
-        :frontend-framework-selection="frontendFrameworkSelection"
         :guest-favorite-flags="guestFavoriteFlags"
         :starter-flags="starterFlags"
         :framework-flags="frameworkFlags"
@@ -56,11 +56,11 @@
     <br />
     <le-frontend :items="leFrontendFlags" />
     <br />
-    <frontend-framework-selector
+    <!-- <frontend-framework-selector
       :items="frontendFrameworkSelection"
       :selected-frontend-framework="selectedFrontendFramework"
     />
-    <br />
+    <br /> -->
     <testing :items="testingFlags" />
   </div>
 </template>
@@ -83,7 +83,7 @@ import Starters from '@/components/sections/Starters'
 import Mains from '@/components/sections/Mains'
 import Email from '@/components/sections/Email'
 import LeFrontend from '@/components/sections/LeFrontend'
-import FrontendFrameworkSelector from '@/components/sections/FrontendFrameworkSelector'
+// import FrontendFrameworkSelector from '@/components/sections/FrontendFrameworkSelector'
 import Testing from '@/components/sections/Testing'
 
 export default {
@@ -102,7 +102,7 @@ export default {
     Mains,
     Email,
     LeFrontend,
-    FrontendFrameworkSelector,
+    // FrontendFrameworkSelector,
     Testing
   },
   data: () => ({
@@ -318,42 +318,42 @@ export default {
         disabled: false
       }
     ],
-    frontendFrameworkSelection: [
-      {
-        itemName: '',
-        description: 'No frontend framework',
-        cliName: '',
-        group: 'frontend-framework'
-      },
-      {
-        itemName: 'Vue.js',
-        description: 'vue',
-        logo: 'TODO',
-        cliName: 'vue',
-        group: 'frontend-framework'
-      },
-      {
-        itemName: 'React',
-        description: 'React',
-        logo: 'TODO',
-        cliName: 'react',
-        group: 'frontend-framework'
-      },
-      {
-        itemName: 'Elm',
-        description: 'elm',
-        logo: 'TODO',
-        cliName: 'elm',
-        group: 'frontend-framework'
-      },
-      {
-        itemName: 'Angular',
-        description: 'angular',
-        logo: 'TODO',
-        cliName: 'angular',
-        group: 'frontend-framework'
-      }
-    ],
+    // frontendFrameworkSelection: [
+    //   {
+    //     itemName: '',
+    //     description: 'No frontend framework',
+    //     cliName: '',
+    //     group: 'frontend-framework'
+    //   },
+    //   {
+    //     itemName: 'Vue.js',
+    //     description: 'vue',
+    //     logo: 'TODO',
+    //     cliName: 'vue',
+    //     group: 'frontend-framework'
+    //   },
+    //   {
+    //     itemName: 'React',
+    //     description: 'React',
+    //     logo: 'TODO',
+    //     cliName: 'react',
+    //     group: 'frontend-framework'
+    //   },
+    //   {
+    //     itemName: 'Elm',
+    //     description: 'elm',
+    //     logo: 'TODO',
+    //     cliName: 'elm',
+    //     group: 'frontend-framework'
+    //   },
+    //   {
+    //     itemName: 'Angular',
+    //     description: 'angular',
+    //     logo: 'TODO',
+    //     cliName: 'angular',
+    //     group: 'frontend-framework'
+    //   }
+    // ],
     testingFlags: [
       {
         itemName: '--skip-test',
@@ -502,7 +502,7 @@ export default {
         this.extraIngredientsJsFrameworkSelection,
         this.extraIngredientsCssFrameworkSelection,
         this.databaseSelection,
-        this.frontendFrameworkSelection,
+        // this.frontendFrameworkSelection,
         this.chooseYourBaseSelection
       ].forEach((section) => {
         const itemNames = section.map((item) => item.itemName)
