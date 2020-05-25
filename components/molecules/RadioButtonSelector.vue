@@ -2,6 +2,7 @@
   <li
     class="hover:bg-gray-200"
     :style="selectedItem === itemName ? 'background-color: #e2e8f0;' : ''"
+    @click="updateRadioButtonState"
   >
     <div class="flex items-center px-4 py-2 sm:px-6">
       <div class="min-w-0 flex-1 flex items-center">
@@ -30,7 +31,6 @@
           :name="group"
           :value="itemName"
           class="form-radio h-4 w-4 text-indigo-600 transition duration-150 ease-in-out"
-          @change.stop.prevent="updateRadioButtonState"
         />
       </div>
     </div>
@@ -61,8 +61,7 @@ export default {
   },
   methods: {
     updateRadioButtonState(event) {
-      event.preventDefault()
-      event.stopPropagation()
+      console.log(this)
       eventBus.$emit('radioButtonUpdated', this.itemName)
     }
   }

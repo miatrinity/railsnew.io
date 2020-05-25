@@ -143,13 +143,15 @@ export default {
         itemName: 'TailwindCSS',
         description:
           'A utility-first CSS framework for rapidly building custom designs',
-        group: 'extra-ingredients-css-framework'
+        group: 'extra-ingredients-css-framework',
+        logo: 'TailwindLogo'
       },
       {
         itemName: 'Bootstrap',
         description:
           'Quickly design and customize responsive mobile-first sites',
-        group: 'extra-ingredients-css-framework'
+        group: 'extra-ingredients-css-framework',
+        logo: 'BootstrapLogo'
       }
     ],
     chooseYourBaseSelection: [

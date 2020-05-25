@@ -39,10 +39,14 @@
 
 <script>
 import RadioButtonSelector from '@/components/molecules/RadioButtonSelector'
+import TailwindLogo from '@/components/svgs/TailwindLogo'
+import BootstrapLogo from '@/components/svgs/BootstrapLogo'
 
 export default {
   components: {
-    RadioButtonSelector
+    RadioButtonSelector,
+    TailwindLogo,
+    BootstrapLogo
   },
   props: {
     items: {
