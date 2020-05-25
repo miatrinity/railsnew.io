@@ -1,9 +1,9 @@
 <template>
-  <li>
-    <!-- <a
-      href="#"
-      class="block hover:bg-gray-50 focus:outline-none focus:bg-gray-50 transition duration-150 ease-in-out"
-    > -->
+  <li
+    class="hover:bg-yellow-100"
+    :style="checked ? 'background-color: #F7FAFC;' : ''"
+    @click="updateCheckboxState"
+  >
     <div class="flex items-center px-4 py-4 sm:px-6">
       <div class="min-w-0 flex-1 flex items-center">
         <div class="min-w-0 flex-1 px-4 md:grid md:gap-4">
@@ -29,11 +29,9 @@
           class="form-checkbox h-4 w-4 text-indigo-600 transition duration-150 ease-in-out"
           :checked="checked"
           :disabled="disabled"
-          @change.stop.prevent="updateCheckboxState"
         />
       </div>
     </div>
-    <!-- </a> -->
   </li>
 </template>
 
@@ -59,8 +57,6 @@ export default {
   },
   methods: {
     updateCheckboxState(event) {
-      // event.preventDefault()
-      // event.stopPropagation()
       eventBus.$emit('checkboxUpdated', this.itemName)
     }
   }
