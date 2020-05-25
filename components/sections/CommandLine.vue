@@ -60,12 +60,12 @@ export default {
         return []
       }
     },
-    frontendFrameworkSelection: {
-      type: Array,
-      default() {
-        return []
-      }
-    },
+    // frontendFrameworkSelection: {
+    //   type: Array,
+    //   default() {
+    //     return []
+    //   }
+    // },
     testingFlags: {
       type: Array,
       default() {
@@ -83,7 +83,7 @@ export default {
     fullCommandLine() {
       return `rails new ${
         this.appName
-      } ${this.flagForSelectedDatabase()} ${this.flagForSelectedRailsTemplate()} ${this.flagForSelectedFrontendFramework()} ${[
+      } ${this.flagForSelectedDatabase()} ${this.flagForSelectedRailsTemplate()} ${[
         ...this.guestFavoriteFlags,
         ...this.starterFlags,
         ...this.frameworkFlags,
@@ -107,15 +107,15 @@ export default {
         return `-d ${databaseItem.cliName}`
       }
     },
-    flagForSelectedFrontendFramework() {
-      if (this.selectedFrontendFramework === '') return ''
+    // flagForSelectedFrontendFramework() {
+    //   if (this.selectedFrontendFramework === '') return ''
 
-      const frameworkItem = this.frontendFrameworkSelection.find(
-        (item) => item.itemName === this.selectedFrontendFramework
-      )
+    //   const frameworkItem = this.frontendFrameworkSelection.find(
+    //     (item) => item.itemName === this.selectedFrontendFramework
+    //   )
 
-      return `--webpack=${frameworkItem.cliName}`
-    },
+    //   return `--webpack=${frameworkItem.cliName}`
+    // },
     flagForSelectedRailsTemplate() {
       if (this.selectedJsFramework === '' && this.selectedCssFramework === '')
         return ''
