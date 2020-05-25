@@ -123,12 +123,14 @@ export default {
         itemName: 'Stimulus.js',
         description:
           'A modest JavaScript framework for the HTML you already have.',
-        group: 'extra-ingredients-js-framework'
+        group: 'extra-ingredients-js-framework',
+        logo: 'StimulusLogo'
       },
       {
         itemName: 'Stimulus.js + Stimulus Reflex',
         description: 'Craft modern, reactive web interfaces',
-        group: 'extra-ingredients-js-framework'
+        group: 'extra-ingredients-js-framework',
+        logo: 'StimulusReflexLogo'
       }
     ],
     extraIngredientsCssFrameworkSelection: [
@@ -320,15 +322,7 @@ export default {
       {
         itemName: '',
         description: 'No frontend framework',
-        logo: 'TODO',
         cliName: '',
-        group: 'frontend-framework'
-      },
-      {
-        itemName: 'Stimulus',
-        description: 'stimulus yoo',
-        logo: 'TODO',
-        cliName: 'stimulus',
         group: 'frontend-framework'
       },
       {
