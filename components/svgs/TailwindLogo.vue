@@ -2,9 +2,9 @@
   <svg
     focusable="false"
     width="2em"
-    height="2em"
+    height="2.35em"
     class="h-10 w-auto hidden md:block"
-    viewBox="0 0 64 64"
+    viewBox="0 0 68 40"
     fill="none"
     xmlns="http://www.w3.org/2000/svg"
   >

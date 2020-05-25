@@ -22,8 +22,8 @@
           </pre>
         </div>
       </li>
-      <li>> <code>webpack-dev-server</code></li>
-      <li>> <code>rails s</code></li>
+      <li>> <code>bin/webpack-dev-server</code></li>
+      <li>> <code>bin/rails s</code></li>
       <li>
         Visit
         <a

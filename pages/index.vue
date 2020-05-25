@@ -4,7 +4,7 @@
     <br />
     <div
       id="rails-new-command-generator-holder"
-      class="flex-col bg-gray-700 py-10 z-50"
+      class="flex-col bg-gray-700 py-8 z-50"
     >
       <app-name-input :app-name="appName" />
       <!-- :frontend-framework-selection="frontendFrameworkSelection" -->

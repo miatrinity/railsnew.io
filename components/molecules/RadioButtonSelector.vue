@@ -1,7 +1,7 @@
 <template>
   <li
-    class="hover:bg-gray-200"
-    :style="selectedItem === itemName ? 'background-color: #e2e8f0;' : ''"
+    class="hover:bg-yellow-100"
+    :style="selectedItem === itemName ? 'background-color: #F7FAFC;' : ''"
     @click="updateRadioButtonState"
   >
     <div class="flex items-center px-4 py-2 sm:px-6">

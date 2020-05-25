@@ -1,6 +1,9 @@
 <template>
-  <div id="rails-new-output" class="text-gray-200 max-w-4xl mt-10 mx-auto">
-    <pre id="rails-new-output-text" class="text-left px-10">
+  <div
+    id="rails-new-output-container"
+    class="text-gray-200 max-w-4xl mt-6 mx-auto h-32 mb-3 flex "
+  >
+    <pre id="rails-new-output-text" class="text-left px-10 my-auto">
       {{ fullCommandLine }}
       </pre
     >
