@@ -36,13 +36,6 @@
           class="flex items-center flex-1 md:absolute md:inset-y-0 md:left-0"
         >
           <div class="flex items-center justify-between w-full md:w-auto">
-            <a href="#">
-              <img
-                class="h-8 w-auto sm:h-10"
-                src="/img/logos/workflow-mark-on-white.svg"
-                alt=""
-              />
-            </a>
             <div class="-mr-2 flex items-center md:hidden">
               <button
                 type="button"
@@ -112,13 +105,6 @@
       <div class="rounded-lg shadow-md">
         <div class="rounded-lg bg-white shadow-xs overflow-hidden">
           <div class="px-5 pt-4 flex items-center justify-between">
-            <div>
-              <img
-                class="h-8 w-auto"
-                src="/img/logos/workflow-mark-on-white.svg"
-                alt=""
-              />
-            </div>
             <div class="-mr-2">
               <button
                 type="button"
