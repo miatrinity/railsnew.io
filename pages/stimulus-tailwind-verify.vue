@@ -17,7 +17,7 @@
         >
           <pre style="margin: 0; line-height: 125%">      
 <span style="color: #f92672">&lt;div</span> <span style="color: #a6e22e">data-controller=</span><span style="color: #e6db74">&quot;hello&quot;</span><span style="color: #f92672">&gt;</span>
-  <span style="color: #f92672">&lt;h1</span> <span style="color: #a6e22e">data-target=</span><span style="color: #e6db74">&quot;hello.output&quot;</span> <span style="color: #a6e22e">class=</span><span style="color: #e6db74">&quot;text-red-300&quot;</span><span style="color: #f92672">&gt;&lt;/h1&gt;</span>
+  <span style="color: #f92672">&lt;h1</span> <span style="color: #a6e22e">data-target=</span><span style="color: #e6db74">&quot;hello.output&quot;</span> <span style="color: #a6e22e">class=</span><span style="color: #e6db74">&quot;text-red-500&quot;</span><span style="color: #f92672">&gt;&lt;/h1&gt;</span>
 <span style="color: #f92672">&lt;/div&gt;</span>
           </pre>
         </div>
@@ -31,6 +31,10 @@
           class="underline text-indigo-800"
           >http://localhost:3000/verify/index</a
         >
+      </li>
+      <li>
+        Verify that the text says 'Welcome to Stimulus' (verifies that Stimulus
+        works) in red (verifies that TailwindCSS works).
       </li>
     </ol>
   </div>

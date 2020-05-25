@@ -87,6 +87,19 @@ import LeFrontend from '@/components/sections/LeFrontend'
 import Testing from '@/components/sections/Testing'
 
 export default {
+  head() {
+    return {
+      title:
+        'railsnew.io - the simplest way to generate a new Rails application with (or without!) all the bells and whistles.',
+      meta: [
+        {
+          hid: 'description',
+          name: 'description',
+          content: 'Home page description'
+        }
+      ]
+    }
+  },
   components: {
     MainHero,
     AppNameInput,
@@ -392,89 +405,7 @@ export default {
       }
     ]
   }),
-  methods: {
-    setUpOmakase() {
-      this.selectedDatabase = 'SQLite'
-      this.selectedFrontendFramework = ''
-      Vue.set(this.guestFavoriteFlags[0], 'checked', false)
-      Vue.set(this.guestFavoriteFlags[1], 'checked', false)
-      Vue.set(this.guestFavoriteFlags[2], 'checked', false)
-      Vue.set(this.starterFlags[0], 'checked', false)
-      Vue.set(this.starterFlags[1], 'checked', false)
-      Vue.set(this.starterFlags[2], 'checked', false)
-      Vue.set(this.starterFlags[3], 'checked', false)
-      Vue.set(this.starterFlags[4], 'checked', false)
-      Vue.set(this.frameworkFlags[0], 'checked', false)
-      Vue.set(this.frameworkFlags[1], 'checked', false)
-      Vue.set(this.frameworkFlags[2], 'checked', false)
-      Vue.set(this.frameworkFlags[3], 'checked', false)
-      Vue.set(this.emailFlags[0], 'checked', false)
-      Vue.set(this.emailFlags[1], 'checked', false)
-      Vue.set(this.leFrontendFlags[0], 'checked', false)
-      Vue.set(this.leFrontendFlags[1], 'checked', false)
-      Vue.set(this.leFrontendFlags[2], 'checked', false)
-      Vue.set(this.leFrontendFlags[3], 'checked', false)
-      Vue.set(this.testingFlags[0], 'checked', false)
-      Vue.set(this.testingFlags[1], 'checked', false)
-    },
-    setUpTheMinimalist() {
-      this.selectedDatabase = 'SQLite'
-      this.selectedFrontendFramework = ''
-      Vue.set(this.guestFavoriteFlags[0], 'checked', true)
-      Vue.set(this.guestFavoriteFlags[1], 'checked', true)
-      Vue.set(this.guestFavoriteFlags[2], 'checked', true)
-      Vue.set(this.starterFlags[0], 'checked', true)
-      Vue.set(this.starterFlags[1], 'checked', true)
-      Vue.set(this.starterFlags[2], 'checked', true)
-      Vue.set(this.starterFlags[3], 'checked', true)
-      Vue.set(this.starterFlags[4], 'checked', false)
-      Vue.set(this.frameworkFlags[0], 'checked', true)
-      Vue.set(this.frameworkFlags[1], 'checked', false)
-      Vue.set(this.frameworkFlags[2], 'checked', true)
-      Vue.set(this.frameworkFlags[3], 'checked', true)
-      Vue.set(this.emailFlags[0], 'checked', true)
-      Vue.set(this.emailFlags[1], 'checked', true)
-      Vue.set(this.leFrontendFlags[0], 'checked', true)
-      Vue.set(this.leFrontendFlags[1], 'checked', true)
-      Vue.set(this.leFrontendFlags[2], 'checked', true)
-      Vue.set(this.leFrontendFlags[3], 'checked', true)
-      Vue.set(this.testingFlags[0], 'checked', true)
-      Vue.set(this.testingFlags[1], 'checked', true)
-    },
-    setUpTheEarlyDays() {
-      this.selectedDatabase = 'SQLite'
-      this.selectedFrontendFramework = ''
-      Vue.set(this.guestFavoriteFlags[0], 'checked', true)
-      Vue.set(this.guestFavoriteFlags[1], 'checked', true)
-      Vue.set(this.guestFavoriteFlags[2], 'checked', true)
-      Vue.set(this.starterFlags[0], 'checked', false)
-      Vue.set(this.starterFlags[1], 'checked', false)
-      Vue.set(this.starterFlags[2], 'checked', true)
-      Vue.set(this.starterFlags[3], 'checked', false)
-      Vue.set(this.starterFlags[4], 'checked', false)
-      Vue.set(this.frameworkFlags[0], 'checked', true)
-      Vue.set(this.frameworkFlags[1], 'checked', false)
-      Vue.set(this.frameworkFlags[2], 'checked', true)
-      Vue.set(this.frameworkFlags[3], 'checked', true)
-      Vue.set(this.emailFlags[0], 'checked', false)
-      Vue.set(this.emailFlags[1], 'checked', true)
-      Vue.set(this.leFrontendFlags[0], 'checked', false)
-      Vue.set(this.leFrontendFlags[1], 'checked', true)
-      Vue.set(this.leFrontendFlags[2], 'checked', true)
-      Vue.set(this.leFrontendFlags[3], 'checked', true)
-      Vue.set(this.testingFlags[0], 'checked', false)
-      Vue.set(this.testingFlags[1], 'checked', true)
-    },
-    setCheckboxState(field, checked) {
-      Vue.set(field, 'checked', checked)
-      Vue.set(field, 'disabled', true)
-    }
-  },
   mounted() {
-    eventBus.$on('showModal', () => {
-      this.exampleModalShowing = true
-    })
-
     eventBus.$on('appNameUpdated', (appNameData) => {
       this.appName = appNameData
     })
@@ -565,6 +496,84 @@ export default {
         }
       })
     })
+  },
+  methods: {
+    setUpOmakase() {
+      this.selectedDatabase = 'SQLite'
+      this.selectedFrontendFramework = ''
+      Vue.set(this.guestFavoriteFlags[0], 'checked', false)
+      Vue.set(this.guestFavoriteFlags[1], 'checked', false)
+      Vue.set(this.guestFavoriteFlags[2], 'checked', false)
+      Vue.set(this.starterFlags[0], 'checked', false)
+      Vue.set(this.starterFlags[1], 'checked', false)
+      Vue.set(this.starterFlags[2], 'checked', false)
+      Vue.set(this.starterFlags[3], 'checked', false)
+      Vue.set(this.starterFlags[4], 'checked', false)
+      Vue.set(this.frameworkFlags[0], 'checked', false)
+      Vue.set(this.frameworkFlags[1], 'checked', false)
+      Vue.set(this.frameworkFlags[2], 'checked', false)
+      Vue.set(this.frameworkFlags[3], 'checked', false)
+      Vue.set(this.emailFlags[0], 'checked', false)
+      Vue.set(this.emailFlags[1], 'checked', false)
+      Vue.set(this.leFrontendFlags[0], 'checked', false)
+      Vue.set(this.leFrontendFlags[1], 'checked', false)
+      Vue.set(this.leFrontendFlags[2], 'checked', false)
+      Vue.set(this.leFrontendFlags[3], 'checked', false)
+      Vue.set(this.testingFlags[0], 'checked', false)
+      Vue.set(this.testingFlags[1], 'checked', false)
+    },
+    setUpTheMinimalist() {
+      this.selectedDatabase = 'SQLite'
+      this.selectedFrontendFramework = ''
+      Vue.set(this.guestFavoriteFlags[0], 'checked', true)
+      Vue.set(this.guestFavoriteFlags[1], 'checked', true)
+      Vue.set(this.guestFavoriteFlags[2], 'checked', true)
+      Vue.set(this.starterFlags[0], 'checked', true)
+      Vue.set(this.starterFlags[1], 'checked', true)
+      Vue.set(this.starterFlags[2], 'checked', true)
+      Vue.set(this.starterFlags[3], 'checked', true)
+      Vue.set(this.starterFlags[4], 'checked', false)
+      Vue.set(this.frameworkFlags[0], 'checked', true)
+      Vue.set(this.frameworkFlags[1], 'checked', false)
+      Vue.set(this.frameworkFlags[2], 'checked', true)
+      Vue.set(this.frameworkFlags[3], 'checked', true)
+      Vue.set(this.emailFlags[0], 'checked', true)
+      Vue.set(this.emailFlags[1], 'checked', true)
+      Vue.set(this.leFrontendFlags[0], 'checked', true)
+      Vue.set(this.leFrontendFlags[1], 'checked', true)
+      Vue.set(this.leFrontendFlags[2], 'checked', true)
+      Vue.set(this.leFrontendFlags[3], 'checked', true)
+      Vue.set(this.testingFlags[0], 'checked', true)
+      Vue.set(this.testingFlags[1], 'checked', true)
+    },
+    setUpTheEarlyDays() {
+      this.selectedDatabase = 'SQLite'
+      this.selectedFrontendFramework = ''
+      Vue.set(this.guestFavoriteFlags[0], 'checked', true)
+      Vue.set(this.guestFavoriteFlags[1], 'checked', true)
+      Vue.set(this.guestFavoriteFlags[2], 'checked', true)
+      Vue.set(this.starterFlags[0], 'checked', false)
+      Vue.set(this.starterFlags[1], 'checked', false)
+      Vue.set(this.starterFlags[2], 'checked', true)
+      Vue.set(this.starterFlags[3], 'checked', false)
+      Vue.set(this.starterFlags[4], 'checked', false)
+      Vue.set(this.frameworkFlags[0], 'checked', true)
+      Vue.set(this.frameworkFlags[1], 'checked', false)
+      Vue.set(this.frameworkFlags[2], 'checked', true)
+      Vue.set(this.frameworkFlags[3], 'checked', true)
+      Vue.set(this.emailFlags[0], 'checked', false)
+      Vue.set(this.emailFlags[1], 'checked', true)
+      Vue.set(this.leFrontendFlags[0], 'checked', false)
+      Vue.set(this.leFrontendFlags[1], 'checked', true)
+      Vue.set(this.leFrontendFlags[2], 'checked', true)
+      Vue.set(this.leFrontendFlags[3], 'checked', true)
+      Vue.set(this.testingFlags[0], 'checked', false)
+      Vue.set(this.testingFlags[1], 'checked', true)
+    },
+    setCheckboxState(field, checked) {
+      Vue.set(field, 'checked', checked)
+      Vue.set(field, 'disabled', true)
+    }
   }
 }
 </script>

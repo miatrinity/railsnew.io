@@ -25,6 +25,11 @@
             <br />(to a spring 🧵 in your soba 🍜, perhaps?) <br />Fret not,
             purveyor of fine apps 📲 <br />for you are in good hands 🤲🏼!
           </p>
+          <p class="pt-5 text-xl text-gray-700">
+            <span class="font-semibold">railsnew.io</span>:
+            <span class="italic">the</span> simplest way to generate a new Rails
+            application with (or without!) all the bells and whistles.
+          </p>
         </div>
       </div>
     </div>
