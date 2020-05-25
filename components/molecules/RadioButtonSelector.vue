@@ -1,10 +1,9 @@
 <template>
-  <li>
-    <!-- <a
-      href="#"
-      class="block hover:bg-gray-50 focus:outline-none focus:bg-gray-50 transition duration-150 ease-in-out"
-    > -->
-    <div class="flex items-center px-4 py-4 sm:px-6">
+  <li
+    class="hover:bg-gray-200"
+    :style="selectedItem === itemName ? 'background-color: #e2e8f0;' : ''"
+  >
+    <div class="flex items-center px-4 py-2 sm:px-6">
       <div class="min-w-0 flex-1 flex items-center">
         <div class="flex-shrink-0">
           <slot></slot>
@@ -35,7 +34,6 @@
         />
       </div>
     </div>
-    <!-- </a> -->
   </li>
 </template>
 
