@@ -1,7 +1,12 @@
 <template>
-  <div class="max-w-screen-xl mx-auto px-4 sm:px-6">
+  <div
+    class="max-w-screen-xl mx-auto px-4 sm:px-6 
+              sm:mt-0 md:mt-3"
+  >
     <nav
-      class="relative flex items-center justify-between sm:h-10 md:justify-center"
+      class="relative
+             flex items-center justify-between 
+             sm:h-10 md:justify-center"
     >
       <div class="flex items-center flex-1 md:absolute md:inset-y-0 md:left-0">
         <div class="flex items-center justify-end w-full md:w-auto">
@@ -52,7 +57,7 @@
         <a
           href="/comingsoon"
           target="_blank"
-          class="ml-10 font-medium bg-indigo-800 rounded-lg p-2 text-gray-100 shadow-lg hover:text-gray-900 focus:outline-none focus:text-gray-900 transition duration-150 ease-in-out"
+          class="ml-10 font-medium bg-indigo-800 rounded-lg p-2 text-gray-100 shadow-lg hover:bg-indigo-200  hover:text-indigo-700 focus:outline-none focus:text-gray-900 transition duration-150 ease-in-out"
           >My Stuff</a
         >
       </div>

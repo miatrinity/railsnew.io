@@ -55,14 +55,25 @@
               >
               <n-link
                 to="/about"
-                class="mt-1 block px-3 py-2 rounded-md text-base font-medium text-gray-700 hover:text-gray-900 hover:bg-gray-50 focus:outline-none focus:text-gray-900 focus:bg-gray-50 transition duration-150 ease-in-out"
+                class="mt-1 block px-3 py-2 
+                       w-screen
+                       rounded-md text-base font-medium text-gray-700 hover:text-gray-900 hover:bg-gray-50 focus:outline-none focus:text-gray-900 focus:bg-gray-50 transition duration-150 ease-in-out"
                 >📨 About / Contact</n-link
               >
-              <a
-                href="/comingsoon"
+              <n-link
+                to="/comingsoon"
                 target="_blank"
-                class="ml-10 font-medium bg-indigo-800 rounded-lg p-2 text-gray-100 shadow-lg hover:text-gray-900 focus:outline-none focus:text-gray-900 transition duration-150 ease-in-out"
-                >My Stuff</a
+                class="ml-0 sm:ml-0 md:ml-10
+                       block
+                       mt-2 sm:mt-2 md:mt-0 
+                       font-medium bg-indigo-800 
+                       rounded-none sm:rounded-none md:rounded-lg 
+                       py-2 px-3 
+                       text-gray-100 shadow-lg
+                       hover:bg-indigo-200  hover:text-indigo-700 
+                       focus:outline-none focus:text-gray-900 
+                       transition duration-150 ease-in-out"
+                >💻️ My Stuff</n-link
               >
             </div>
           </div>

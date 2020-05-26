@@ -11,6 +11,7 @@
     <a
       class="block bg-purple-500 
             lg:rounded-lg md:rounded-lg xl:rounded-lg 
+            ml-0 md:mr-5
             px-6 text-gray-100 shadow-2xl whitespace-no-wrap py-3"
       @click.stop.prevent="copyToClipboard"
     >
@@ -20,8 +21,8 @@
     <a
       v-show="verificationLink !== ''"
       class="block bg-indigo-800 
-             lg:rounded-lg md:rounded-lg xl:rounded-lg 
-             mx-0 md:mx-5
+             lg:rounded-lg md:rounded-lg xl:rounded-lg
+             ml-0 md:mr-5           
              px-6 text-gray-100 shadow-2xl whitespace-no-wrap py-3"
       :href="verificationLink"
       target="_blank"
