@@ -1,9 +1,19 @@
 <template>
   <div
     id="rails-new-output-container"
-    class="text-gray-200 max-w-4xl mt-6 mx-auto h-32 mb-3 flex "
+    class="text-gray-200 max-w-4xl 
+           mt-3 sm:mt-3 md:mt-5 lg:mt-6 xl:mt-8
+           h-auto sm:h-auto md:h-40 lg:h-40 xl:h-40
+           mx-auto
+           flex items-center"
   >
-    <pre id="rails-new-output-text" class="text-left px-10 my-auto">
+    <pre
+      id="rails-new-output-text"
+      class="text-left 
+            px-5 sm:px-5 md:px-8 lg:px-10 xl:px-12
+            text-xs md:text-base lg:text-base xl:text-base
+            break-normal"
+    >
       {{ fullCommandLine }}
       </pre
     >

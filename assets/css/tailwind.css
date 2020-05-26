@@ -22,7 +22,7 @@ body {
 #rails-new-command-generator-holder {
   position: -webkit-sticky;
   position: sticky;
-  top: 0px;
+  top: 0;
 }
 
 .toasted.toasted-primary.copied-toast {

@@ -1,14 +1,36 @@
 <template>
-  <div class="flex justify-center">
-    <button
-      class="bg-purple-500 rounded-lg py-2 px-6 text-gray-100 shadow-2xl mx-10"
+  <div
+    class="sm:flex-wrap md:flex lg:flex xl:flex 
+           items-center
+           justify-center 
+           divide-y sm:divide-y-2 md:divide-y-0 lg:divide-y-0 xl:divide-y-0 
+           divide-gray-400
+           bg-gray-700 
+           sm:pb-0 md:pb-8 lg:pb-8 xl:pb-8"
+  >
+    <a
+      class="block bg-purple-500 
+            lg:rounded-lg md:rounded-lg xl:rounded-lg 
+            px-6 text-gray-100 shadow-2xl whitespace-no-wrap py-3"
       @click.stop.prevent="copyToClipboard"
     >
       Copy to Clipboard
-    </button>
+    </a>
 
     <a
-      class="bg-indigo-800 rounded-lg py-2 px-6 text-gray-100 shadow-2xl mx-10"
+      class="block bg-indigo-800 
+             lg:rounded-lg md:rounded-lg xl:rounded-lg 
+             mx-0 md:mx-5
+             px-6 text-gray-100 shadow-2xl whitespace-no-wrap py-3"
+      href="comingsoon"
+    >
+      Verify My Setup
+    </a>
+
+    <a
+      class="block bg-indigo-800 
+             md:rounded-lg lg:rounded-lg xl:rounded-lg 
+             px-6 text-gray-100 shadow-2xl whitespace-no-wrap py-3"
       href="comingsoon"
     >
       Save to My Stuff

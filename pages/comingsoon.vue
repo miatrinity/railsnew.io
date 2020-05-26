@@ -1,5 +1,7 @@
 <template>
-  <div class="max-w-2xl py-0 px-6 mx-auto mt-16 mb-20">
+  <div
+    class="max-w-2xl py-0 px-6 mx-auto mt-0 mb-20 md:mt-10 lg:mt-16 xl:mt-18 mb-20"
+  >
     <h2 class="text-4xl font-bold text-gray-900">Not Implemented Yet :(</h2>
     <p class="mb-6 text-lg leading-loose">
       This featuere is coming in the public release. <br />

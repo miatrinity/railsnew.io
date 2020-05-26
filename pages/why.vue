@@ -1,5 +1,7 @@
 <template>
-  <div class="max-w-2xl py-0 px-6 mx-auto mt-16 mb-20">
+  <div
+    class="max-w-2xl py-0 px-6 mx-auto mt-0 mb-20 md:mt-10 lg:mt-16 xl:mt-18 mb-20"
+  >
     <div class="flex">
       <img
         class="h-10 px-3"

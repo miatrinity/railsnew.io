@@ -2,11 +2,11 @@
   <div>
     <main-hero />
     <br />
+    <app-name-input :app-name="appName" />
     <div
       id="rails-new-command-generator-holder"
-      class="flex-col bg-gray-700 py-8 z-50"
+      class="flex-col bg-gray-700 pt-3 z-50"
     >
-      <app-name-input :app-name="appName" />
       <!-- :frontend-framework-selection="frontendFrameworkSelection" -->
       <command-line
         :app-name="appName"

@@ -1,8 +1,13 @@
 <template>
-  <div id="app-name-input" class="flex justify-center items-center ">
+  <div
+    id="app-name-input"
+    class="flex justify-center items-center bg-gray-700 pt-10"
+  >
     <input
       v-model="appName"
-      class="appearance-none w-full px-5 py-3 border border-gray-300 text-base leading-6 rounded-md text-gray-400 bg-white placeholder-gray-500 focus:outline-none focus:shadow-outline focus:border-blue-300 transition duration-150 ease-in-out max-w-lg"
+      class="appearance-none w-full px-5 py-3 border border-gray-300 text-base leading-6 rounded-md 
+              text-gray-400 bg-white placeholder-gray-500 focus:outline-none focus:shadow-outline focus:border-blue-300 
+              transition duration-150 ease-in-out max-w-lg"
       type="text"
       name="app-name"
       autocomplete="off"
