@@ -30,6 +30,7 @@
           type="radio"
           :name="group"
           :value="itemName"
+          :disabled="itemName === 'Minitest' || itemName === 'RSpec'"
           class="form-radio h-4 w-4 text-indigo-600 transition duration-150 ease-in-out"
         />
       </div>

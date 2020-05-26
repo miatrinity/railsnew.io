@@ -54,12 +54,13 @@
       <li>> <code>bin/webpack-dev-server</code></li>
       <li>> <code>bin/rails s</code></li>
       <li>
-        Visit
+        > <code>open http://localhost:4242/verify/index</code><br />
+        (or simply visit
         <a
-          href="http://localhost:3000/verify/index"
+          href="http://localhost:4242/verify/index"
           class="underline text-indigo-800"
-          >http://localhost:3000/verify/index</a
-        >
+          >http://localhost:4242/verify/index</a
+        >)
       </li>
       <li>
         The number should be incrementing when you click the "Click me to

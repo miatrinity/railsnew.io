@@ -18,17 +18,18 @@
       Copy to Clipboard
     </a>
 
-    <a
+    <button
       v-show="verificationLink !== ''"
       class="block bg-indigo-800 
              lg:rounded-lg md:rounded-lg xl:rounded-lg
+             min-w-full sm:min-w-full md:min-w-0
+             text-left sm:text-left md:text-center
              ml-0 md:mr-5           
              px-6 text-gray-100 shadow-2xl whitespace-no-wrap py-3"
-      :href="verificationLink"
-      target="_blank"
+      @click.stop.prevent="openVerifyPanel"
     >
       Verify My Setup
-    </a>
+    </button>
 
     <a
       class="block bg-indigo-800 
@@ -71,6 +72,9 @@ export default {
     },
     myStuffComingSoon() {
       eventBus.$emit('showModal')
+    },
+    openVerifyPanel() {
+      eventBus.$emit('verifyPanelOpened')
     }
   }
 }

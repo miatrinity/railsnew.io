@@ -23,6 +23,78 @@
         :testing-flags="testingFlags"
       />
       <command-line-buttons :verification-link="verificationLink" />
+      <stimulus-verify
+        v-show="
+          verifyPanelOpen &&
+            currentRailsBytesCombo(
+              selectedJsFramework,
+              selectedCssFramework
+            ) === 'Stimulus.js@'
+        "
+      />
+      <stimulus-reflex-verify
+        v-show="
+          verifyPanelOpen &&
+            currentRailsBytesCombo(
+              selectedJsFramework,
+              selectedCssFramework
+            ) === 'Stimulus.js + Stimulus Reflex@'
+        "
+      />
+      <tailwind-verify
+        v-show="
+          verifyPanelOpen &&
+            currentRailsBytesCombo(
+              selectedJsFramework,
+              selectedCssFramework
+            ) === '@TailwindCSS'
+        "
+      />
+      <bootstrap-verify
+        v-show="
+          verifyPanelOpen &&
+            currentRailsBytesCombo(
+              selectedJsFramework,
+              selectedCssFramework
+            ) === '@Bootstrap'
+        "
+      />
+      <stimulus-tailwind-verify
+        v-show="
+          verifyPanelOpen &&
+            currentRailsBytesCombo(
+              selectedJsFramework,
+              selectedCssFramework
+            ) === 'Stimulus.js@TailwindCSS'
+        "
+      />
+      <stimulus-bootstrap-verify
+        v-show="
+          verifyPanelOpen &&
+            currentRailsBytesCombo(
+              selectedJsFramework,
+              selectedCssFramework
+            ) === 'Stimulus.js@Bootstrap'
+        "
+      />
+      <stimulus-reflex-tailwind-verify
+        v-show="
+          verifyPanelOpen &&
+            currentRailsBytesCombo(
+              selectedJsFramework,
+              selectedCssFramework
+            ) === 'Stimulus.js + Stimulus Reflex@TailwindCSS'
+        "
+      />
+      <stimulus-reflex-bootstrap-verify
+        v-show="
+          verifyPanelOpen &&
+            currentRailsBytesCombo(
+              selectedJsFramework,
+              selectedCssFramework
+            ) === 'Stimulus.js + Stimulus Reflex@Bootstrap'
+        "
+      />
     </div>
     <br />
     <section-header title="Choose Your Base" />
@@ -39,6 +111,11 @@
     <extra-ingredients-css-framework
       :items="extraIngredientsCssFrameworkSelection"
       :selected-css-framework="selectedCssFramework"
+    />
+    <br />
+    <extra-ingredients-testing-framework
+      :items="extraIngredientsTestingFrameworkSelection"
+      :selected-testing-framework="selectedTestingFramework"
     />
     <section-header title="Customize A'la Carte" />
     <database-selector
@@ -73,9 +150,18 @@ import MainHero from '@/components/layout/MainHero'
 import AppNameInput from '@/components/sections/AppNameInput'
 import CommandLine from '@/components/sections/CommandLine'
 import CommandLineButtons from '@/components/sections/CommandLineButtons'
+import BootstrapVerify from '@/components/verify/BootstrapVerify'
+import StimulusBootstrapVerify from '@/components/verify/StimulusBootstrapVerify'
+import StimulusReflexBootstrapVerify from '@/components/verify/StimulusReflexBootstrapVerify'
+import StimulusReflexTailwindVerify from '@/components/verify/StimulusReflexTailwindVerify'
+import StimulusReflexVerify from '@/components/verify/StimulusReflexVerify'
+import StimulusTailwindVerify from '@/components/verify/StimulusTailwindVerify'
+import StimulusVerify from '@/components/verify/StimulusVerify'
+import TailwindVerify from '@/components/verify/TailwindVerify'
 import SectionHeader from '@/components/sections/SectionHeader'
 import ExtraIngredientsJsFramework from '@/components/sections/ExtraIngredientsJsFramework'
 import ExtraIngredientsCssFramework from '@/components/sections/ExtraIngredientsCssFramework'
+import ExtraIngredientsTestingFramework from '@/components/sections/ExtraIngredientsTestingFramework'
 import ChooseYourBase from '@/components/sections/ChooseYourBase'
 import DatabaseSelector from '@/components/sections/DatabaseSelector'
 import GuestFavorites from '@/components/sections/GuestFavorites'
@@ -87,6 +173,240 @@ import LeFrontend from '@/components/sections/LeFrontend'
 import Testing from '@/components/sections/Testing'
 
 export default {
+  components: {
+    MainHero,
+    AppNameInput,
+    CommandLine,
+    CommandLineButtons,
+    BootstrapVerify,
+    StimulusBootstrapVerify,
+    StimulusReflexBootstrapVerify,
+    StimulusReflexTailwindVerify,
+    StimulusReflexVerify,
+    StimulusTailwindVerify,
+    StimulusVerify,
+    TailwindVerify,
+    SectionHeader,
+    ExtraIngredientsJsFramework,
+    ExtraIngredientsCssFramework,
+    ExtraIngredientsTestingFramework,
+    ChooseYourBase,
+    DatabaseSelector,
+    GuestFavorites,
+    Starters,
+    Mains,
+    Email,
+    LeFrontend,
+    // FrontendFrameworkSelector,
+    Testing
+  },
+  mounted() {
+    eventBus.$on('appNameUpdated', (appNameData) => {
+      this.appName = appNameData
+    })
+
+    eventBus.$on('verifyPanelOpened', () => {
+      this.verifyPanelOpen = true
+    })
+
+    eventBus.$on('verifyPanelClosed', () => {
+      this.verifyPanelOpen = false
+    })
+
+    eventBus.$on('checkboxUpdated', (itemName) => {
+      ;[
+        this.guestFavoriteFlags,
+        this.starterFlags,
+        this.frameworkFlags,
+        this.emailFlags,
+        this.leFrontendFlags,
+        this.testingFlags
+      ].forEach((section) => {
+        const itemNames = section.map((item) => item.itemName)
+
+        if (itemNames.includes(itemName)) {
+          const itemIndex = section.findIndex(
+            (item) => item.itemName === itemName
+          )
+          Vue.set(section[itemIndex], 'checked', !section[itemIndex].checked)
+        }
+      })
+    })
+
+    eventBus.$on('radioButtonUpdated', (itemName) => {
+      ;[
+        this.extraIngredientsJsFrameworkSelection,
+        this.extraIngredientsCssFrameworkSelection,
+        this.databaseSelection,
+        // this.frontendFrameworkSelection,
+        this.chooseYourBaseSelection
+      ].forEach((section) => {
+        this.verifyPanelOpen = false
+        const itemNames = section.map((item) => item.itemName)
+
+        if (itemNames.includes(itemName)) {
+          if (section[0].group === 'extra-ingredients-js-framework') {
+            this.selectedJsFramework = itemName
+            if (itemName === '') {
+              Vue.set(this.starterFlags[0], 'disabled', false)
+              Vue.set(this.starterFlags[3], 'disabled', false)
+              Vue.set(this.leFrontendFlags[1], 'disabled', false)
+              Vue.set(this.leFrontendFlags[3], 'disabled', false)
+              Vue.set(this.frameworkFlags[3], 'disabled', false)
+            } else {
+              // do NOT --skip-gemfile
+              this.setCheckboxState(this.starterFlags[0], false)
+              // do NOT --skip-bundler
+              this.setCheckboxState(this.starterFlags[3], false)
+              // do NOT --skip-javascript - otherwise it clashes with the railsbyte stuff
+              this.setCheckboxState(this.leFrontendFlags[1], false)
+              // DO --skip-webpack-install - the railsbyte is already installing webpack
+              this.setCheckboxState(this.leFrontendFlags[3], true)
+
+              // do NOT --skip-action-cable if Stimulus Reflex is being used
+              if (itemName.includes('Reflex')) {
+                this.setCheckboxState(this.frameworkFlags[3], false)
+              }
+            }
+            this.setVerificationLink(
+              this.selectedJsFramework,
+              this.selectedCssFramework
+            )
+          } else if (section[0].group === 'extra-ingredients-css-framework') {
+            this.selectedCssFramework = itemName
+            if (
+              itemName.includes('Tailwind') ||
+              itemName.includes('Bootstrap')
+            ) {
+              // do NOT --skip-javascript - otherwise it clashes with the railsbyte stuff
+              Vue.set(this.leFrontendFlags[1], 'checked', false)
+              // DO --skip-webpack-install - the railsbyte is already installing webpack
+              Vue.set(this.leFrontendFlags[3], 'checked', true)
+            }
+            this.setVerificationLink(
+              this.selectedJsFramework,
+              this.selectedCssFramework
+            )
+          } else if (section[0].group === 'choose-your-base') {
+            this.selectedBase = itemName
+            if (itemName === 'Omakase') {
+              this.setUpOmakase()
+            } else if (itemName === 'The Minimalist') {
+              this.setUpTheMinimalist()
+            } else if (itemName === 'The Early Days') {
+              this.setUpTheEarlyDays()
+            }
+          } else if (section[0].group === 'database') {
+            this.selectedDatabase = itemName
+          } else if (section[0].group === 'frontend-framework') {
+            Vue.set(this.starterFlags[0], 'checked', false)
+            Vue.set(this.leFrontendFlags[1], 'checked', false)
+            Vue.set(this.leFrontendFlags[3], 'checked', false)
+
+            this.selectedFrontendFramework = itemName
+          }
+        }
+      })
+    })
+  },
+  methods: {
+    setUpOmakase() {
+      this.selectedDatabase = 'SQLite'
+      this.selectedFrontendFramework = ''
+      Vue.set(this.guestFavoriteFlags[0], 'checked', false)
+      Vue.set(this.guestFavoriteFlags[1], 'checked', false)
+      Vue.set(this.guestFavoriteFlags[2], 'checked', false)
+      Vue.set(this.starterFlags[0], 'checked', false)
+      Vue.set(this.starterFlags[1], 'checked', false)
+      Vue.set(this.starterFlags[2], 'checked', false)
+      Vue.set(this.starterFlags[3], 'checked', false)
+      Vue.set(this.starterFlags[4], 'checked', false)
+      Vue.set(this.frameworkFlags[0], 'checked', false)
+      Vue.set(this.frameworkFlags[1], 'checked', false)
+      Vue.set(this.frameworkFlags[2], 'checked', false)
+      Vue.set(this.frameworkFlags[3], 'checked', false)
+      Vue.set(this.emailFlags[0], 'checked', false)
+      Vue.set(this.emailFlags[1], 'checked', false)
+      Vue.set(this.leFrontendFlags[0], 'checked', false)
+      Vue.set(this.leFrontendFlags[1], 'checked', false)
+      Vue.set(this.leFrontendFlags[2], 'checked', false)
+      Vue.set(this.leFrontendFlags[3], 'checked', false)
+      Vue.set(this.testingFlags[0], 'checked', false)
+      Vue.set(this.testingFlags[1], 'checked', false)
+    },
+    setUpTheMinimalist() {
+      this.selectedDatabase = 'SQLite'
+      this.selectedFrontendFramework = ''
+      Vue.set(this.guestFavoriteFlags[0], 'checked', true)
+      Vue.set(this.guestFavoriteFlags[1], 'checked', true)
+      Vue.set(this.guestFavoriteFlags[2], 'checked', true)
+      Vue.set(this.starterFlags[0], 'checked', true)
+      Vue.set(this.starterFlags[1], 'checked', true)
+      Vue.set(this.starterFlags[2], 'checked', true)
+      Vue.set(this.starterFlags[3], 'checked', true)
+      Vue.set(this.starterFlags[4], 'checked', false)
+      Vue.set(this.frameworkFlags[0], 'checked', true)
+      Vue.set(this.frameworkFlags[1], 'checked', false)
+      Vue.set(this.frameworkFlags[2], 'checked', true)
+      Vue.set(this.frameworkFlags[3], 'checked', true)
+      Vue.set(this.emailFlags[0], 'checked', true)
+      Vue.set(this.emailFlags[1], 'checked', true)
+      Vue.set(this.leFrontendFlags[0], 'checked', true)
+      Vue.set(this.leFrontendFlags[1], 'checked', true)
+      Vue.set(this.leFrontendFlags[2], 'checked', true)
+      Vue.set(this.leFrontendFlags[3], 'checked', true)
+      Vue.set(this.testingFlags[0], 'checked', true)
+      Vue.set(this.testingFlags[1], 'checked', true)
+    },
+    setUpTheEarlyDays() {
+      this.selectedDatabase = 'SQLite'
+      this.selectedFrontendFramework = ''
+      Vue.set(this.guestFavoriteFlags[0], 'checked', true)
+      Vue.set(this.guestFavoriteFlags[1], 'checked', true)
+      Vue.set(this.guestFavoriteFlags[2], 'checked', true)
+      Vue.set(this.starterFlags[0], 'checked', false)
+      Vue.set(this.starterFlags[1], 'checked', false)
+      Vue.set(this.starterFlags[2], 'checked', true)
+      Vue.set(this.starterFlags[3], 'checked', false)
+      Vue.set(this.starterFlags[4], 'checked', false)
+      Vue.set(this.frameworkFlags[0], 'checked', true)
+      Vue.set(this.frameworkFlags[1], 'checked', false)
+      Vue.set(this.frameworkFlags[2], 'checked', true)
+      Vue.set(this.frameworkFlags[3], 'checked', true)
+      Vue.set(this.emailFlags[0], 'checked', false)
+      Vue.set(this.emailFlags[1], 'checked', true)
+      Vue.set(this.leFrontendFlags[0], 'checked', false)
+      Vue.set(this.leFrontendFlags[1], 'checked', true)
+      Vue.set(this.leFrontendFlags[2], 'checked', true)
+      Vue.set(this.leFrontendFlags[3], 'checked', true)
+      Vue.set(this.testingFlags[0], 'checked', false)
+      Vue.set(this.testingFlags[1], 'checked', true)
+    },
+    setCheckboxState(field, checked) {
+      Vue.set(field, 'checked', checked)
+      Vue.set(field, 'disabled', true)
+    },
+    setVerificationLink(jsFramework, cssFramework) {
+      const railsBytes = jsFramework + '@' + cssFramework
+      const railsBytesToURL = {
+        '@': '',
+        'Stimulus.js@': '/stimulus-verify',
+        'Stimulus.js + Stimulus Reflex@': '/stimulus-reflex-verify',
+        '@TailwindCSS': '/tailwind-verify',
+        '@Bootstrap': '/bootstrap-verify',
+        'Stimulus.js@TailwindCSS': '/stimulus-tailwind-verify',
+        'Stimulus.js@Bootstrap': '/stimulus-bootstrap-verify',
+        'Stimulus.js + Stimulus Reflex@TailwindCSS':
+          '/stimulus-reflex-tailwind-verify',
+        'Stimulus.js + Stimulus Reflex@Bootstrap':
+          '/stimulus-reflex-bootstrap-verify'
+      }
+      this.verificationLink = railsBytesToURL[railsBytes]
+    },
+    currentRailsBytesCombo(jsFramework, cssFramework) {
+      return jsFramework + '@' + cssFramework
+    }
+  },
   head() {
     return {
       title:
@@ -100,24 +420,6 @@ export default {
       ]
     }
   },
-  components: {
-    MainHero,
-    AppNameInput,
-    CommandLine,
-    CommandLineButtons,
-    SectionHeader,
-    ExtraIngredientsJsFramework,
-    ExtraIngredientsCssFramework,
-    ChooseYourBase,
-    DatabaseSelector,
-    GuestFavorites,
-    Starters,
-    Mains,
-    Email,
-    LeFrontend,
-    // FrontendFrameworkSelector,
-    Testing
-  },
   data: () => ({
     isOpen: false,
     appName: 'my_awesome_app',
@@ -125,8 +427,10 @@ export default {
     selectedBase: 'The Minimalist',
     selectedJsFramework: '',
     selectedCssFramework: '',
+    selectedTestingFramework: 'Minitest',
     selectedFrontendFramework: '',
     verificationLink: '',
+    verifyPanelOpen: false,
     extraIngredientsJsFrameworkSelection: [
       {
         itemName: '',
@@ -166,6 +470,19 @@ export default {
           'Quickly design and customize responsive mobile-first sites',
         group: 'extra-ingredients-css-framework',
         logo: 'BootstrapLogo'
+      }
+    ],
+    extraIngredientsTestingFrameworkSelection: [
+      {
+        itemName: 'Minitest',
+        description: 'The default testing framework',
+        group: 'extra-ingredients-testing-framework'
+      },
+      {
+        itemName: 'RSpec',
+        description:
+          'The non-default testing framework used by (almost) everyone',
+        group: 'extra-ingredients-testing-framework'
       }
     ],
     chooseYourBaseSelection: [
@@ -405,201 +722,6 @@ export default {
         disabled: false
       }
     ]
-  }),
-  mounted() {
-    eventBus.$on('appNameUpdated', (appNameData) => {
-      this.appName = appNameData
-    })
-
-    eventBus.$on('checkboxUpdated', (itemName) => {
-      ;[
-        this.guestFavoriteFlags,
-        this.starterFlags,
-        this.frameworkFlags,
-        this.emailFlags,
-        this.leFrontendFlags,
-        this.testingFlags
-      ].forEach((section) => {
-        const itemNames = section.map((item) => item.itemName)
-
-        if (itemNames.includes(itemName)) {
-          const itemIndex = section.findIndex(
-            (item) => item.itemName === itemName
-          )
-          Vue.set(section[itemIndex], 'checked', !section[itemIndex].checked)
-        }
-      })
-    })
-
-    eventBus.$on('radioButtonUpdated', (itemName) => {
-      ;[
-        this.extraIngredientsJsFrameworkSelection,
-        this.extraIngredientsCssFrameworkSelection,
-        this.databaseSelection,
-        // this.frontendFrameworkSelection,
-        this.chooseYourBaseSelection
-      ].forEach((section) => {
-        const itemNames = section.map((item) => item.itemName)
-
-        if (itemNames.includes(itemName)) {
-          if (section[0].group === 'extra-ingredients-js-framework') {
-            this.selectedJsFramework = itemName
-            if (itemName === '') {
-              Vue.set(this.starterFlags[0], 'disabled', false)
-              Vue.set(this.starterFlags[3], 'disabled', false)
-              Vue.set(this.leFrontendFlags[1], 'disabled', false)
-              Vue.set(this.leFrontendFlags[3], 'disabled', false)
-              Vue.set(this.frameworkFlags[3], 'disabled', false)
-            } else {
-              // do NOT --skip-gemfile
-              this.setCheckboxState(this.starterFlags[0], false)
-              // do NOT --skip-bundler
-              this.setCheckboxState(this.starterFlags[3], false)
-              // do NOT --skip-javascript - otherwise it clashes with the railsbyte stuff
-              this.setCheckboxState(this.leFrontendFlags[1], false)
-              // DO --skip-webpack-install - the railsbyte is already installing webpack
-              this.setCheckboxState(this.leFrontendFlags[3], true)
-
-              // do NOT --skip-action-cable if Stimulus Reflex is being used
-              if (itemName.includes('Reflex')) {
-                this.setCheckboxState(this.frameworkFlags[3], false)
-              }
-            }
-            this.setVerificationLink(
-              this.selectedJsFramework,
-              this.selectedCssFramework
-            )
-          } else if (section[0].group === 'extra-ingredients-css-framework') {
-            this.selectedCssFramework = itemName
-            if (
-              itemName.includes('Tailwind') ||
-              itemName.includes('Bootstrap')
-            ) {
-              // do NOT --skip-javascript - otherwise it clashes with the railsbyte stuff
-              Vue.set(this.leFrontendFlags[1], 'checked', false)
-              // DO --skip-webpack-install - the railsbyte is already installing webpack
-              Vue.set(this.leFrontendFlags[3], 'checked', true)
-            }
-            this.setVerificationLink(
-              this.selectedJsFramework,
-              this.selectedCssFramework
-            )
-          } else if (section[0].group === 'choose-your-base') {
-            this.selectedBase = itemName
-            if (itemName === 'Omakase') {
-              this.setUpOmakase()
-            } else if (itemName === 'The Minimalist') {
-              this.setUpTheMinimalist()
-            } else if (itemName === 'The Early Days') {
-              this.setUpTheEarlyDays()
-            }
-          } else if (section[0].group === 'database') {
-            this.selectedDatabase = itemName
-          } else if (section[0].group === 'frontend-framework') {
-            Vue.set(this.starterFlags[0], 'checked', false)
-            Vue.set(this.leFrontendFlags[1], 'checked', false)
-            Vue.set(this.leFrontendFlags[3], 'checked', false)
-
-            this.selectedFrontendFramework = itemName
-          }
-        }
-      })
-    })
-  },
-  methods: {
-    setUpOmakase() {
-      this.selectedDatabase = 'SQLite'
-      this.selectedFrontendFramework = ''
-      Vue.set(this.guestFavoriteFlags[0], 'checked', false)
-      Vue.set(this.guestFavoriteFlags[1], 'checked', false)
-      Vue.set(this.guestFavoriteFlags[2], 'checked', false)
-      Vue.set(this.starterFlags[0], 'checked', false)
-      Vue.set(this.starterFlags[1], 'checked', false)
-      Vue.set(this.starterFlags[2], 'checked', false)
-      Vue.set(this.starterFlags[3], 'checked', false)
-      Vue.set(this.starterFlags[4], 'checked', false)
-      Vue.set(this.frameworkFlags[0], 'checked', false)
-      Vue.set(this.frameworkFlags[1], 'checked', false)
-      Vue.set(this.frameworkFlags[2], 'checked', false)
-      Vue.set(this.frameworkFlags[3], 'checked', false)
-      Vue.set(this.emailFlags[0], 'checked', false)
-      Vue.set(this.emailFlags[1], 'checked', false)
-      Vue.set(this.leFrontendFlags[0], 'checked', false)
-      Vue.set(this.leFrontendFlags[1], 'checked', false)
-      Vue.set(this.leFrontendFlags[2], 'checked', false)
-      Vue.set(this.leFrontendFlags[3], 'checked', false)
-      Vue.set(this.testingFlags[0], 'checked', false)
-      Vue.set(this.testingFlags[1], 'checked', false)
-    },
-    setUpTheMinimalist() {
-      this.selectedDatabase = 'SQLite'
-      this.selectedFrontendFramework = ''
-      Vue.set(this.guestFavoriteFlags[0], 'checked', true)
-      Vue.set(this.guestFavoriteFlags[1], 'checked', true)
-      Vue.set(this.guestFavoriteFlags[2], 'checked', true)
-      Vue.set(this.starterFlags[0], 'checked', true)
-      Vue.set(this.starterFlags[1], 'checked', true)
-      Vue.set(this.starterFlags[2], 'checked', true)
-      Vue.set(this.starterFlags[3], 'checked', true)
-      Vue.set(this.starterFlags[4], 'checked', false)
-      Vue.set(this.frameworkFlags[0], 'checked', true)
-      Vue.set(this.frameworkFlags[1], 'checked', false)
-      Vue.set(this.frameworkFlags[2], 'checked', true)
-      Vue.set(this.frameworkFlags[3], 'checked', true)
-      Vue.set(this.emailFlags[0], 'checked', true)
-      Vue.set(this.emailFlags[1], 'checked', true)
-      Vue.set(this.leFrontendFlags[0], 'checked', true)
-      Vue.set(this.leFrontendFlags[1], 'checked', true)
-      Vue.set(this.leFrontendFlags[2], 'checked', true)
-      Vue.set(this.leFrontendFlags[3], 'checked', true)
-      Vue.set(this.testingFlags[0], 'checked', true)
-      Vue.set(this.testingFlags[1], 'checked', true)
-    },
-    setUpTheEarlyDays() {
-      this.selectedDatabase = 'SQLite'
-      this.selectedFrontendFramework = ''
-      Vue.set(this.guestFavoriteFlags[0], 'checked', true)
-      Vue.set(this.guestFavoriteFlags[1], 'checked', true)
-      Vue.set(this.guestFavoriteFlags[2], 'checked', true)
-      Vue.set(this.starterFlags[0], 'checked', false)
-      Vue.set(this.starterFlags[1], 'checked', false)
-      Vue.set(this.starterFlags[2], 'checked', true)
-      Vue.set(this.starterFlags[3], 'checked', false)
-      Vue.set(this.starterFlags[4], 'checked', false)
-      Vue.set(this.frameworkFlags[0], 'checked', true)
-      Vue.set(this.frameworkFlags[1], 'checked', false)
-      Vue.set(this.frameworkFlags[2], 'checked', true)
-      Vue.set(this.frameworkFlags[3], 'checked', true)
-      Vue.set(this.emailFlags[0], 'checked', false)
-      Vue.set(this.emailFlags[1], 'checked', true)
-      Vue.set(this.leFrontendFlags[0], 'checked', false)
-      Vue.set(this.leFrontendFlags[1], 'checked', true)
-      Vue.set(this.leFrontendFlags[2], 'checked', true)
-      Vue.set(this.leFrontendFlags[3], 'checked', true)
-      Vue.set(this.testingFlags[0], 'checked', false)
-      Vue.set(this.testingFlags[1], 'checked', true)
-    },
-    setCheckboxState(field, checked) {
-      Vue.set(field, 'checked', checked)
-      Vue.set(field, 'disabled', true)
-    },
-    setVerificationLink(jsFramework, cssFramework) {
-      const railsBytes = jsFramework + '@' + cssFramework
-      const railsBytesToURL = {
-        '@': '',
-        'Stimulus.js@': '/stimulus-verify',
-        'Stimulus.js + Stimulus Reflex@': '/stimulus-reflex-verify',
-        '@TailwindCSS': '/tailwind-verify',
-        '@Bootstrap': '/bootstrap-verify',
-        'Stimulus.js@TailwindCSS': '/stimulus-tailwind-verify',
-        'Stimulus.js@Bootstrap': '/stimulus-bootstrap-verify',
-        'Stimulus.js + Stimulus Reflex@TailwindCSS':
-          '/stimulus-reflex-tailwind-verify',
-        'Stimulus.js + Stimulus Reflex@Bootstrap':
-          '/stimulus-reflex-bootstrap-verify'
-      }
-      this.verificationLink = railsBytesToURL[railsBytes]
-    }
-  }
+  })
 }
 </script>
