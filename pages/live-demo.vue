@@ -50,6 +50,16 @@
           </div>
         </a>
       </li>
+      <li>
+        <a href="#demo-5">
+          <span class="font-extrabold underline text-indigo-800">Verify!</span
+          >:<br />
+          <div class="ml-8">
+            Verify my Stimulus Setup (after the app from the previus demo has
+            been created)
+          </div>
+        </a>
+      </li>
     </ul>
     <br />
     <h2
@@ -96,6 +106,17 @@
 
     <div class="mb-20">
       <img src="~/assets/demo4.gif" />
+    </div>
+
+    <h2
+      id="demo-5"
+      class="text-3xl font-semibold antialiased text-gray-700 tracking-tight leading-tight mb-6"
+    >
+      Verify my Stimulus Setup (after the app from the previus demo has created)
+    </h2>
+
+    <div class="mb-20">
+      <img src="~/assets/demo5.gif" />
     </div>
   </div>
 </template>

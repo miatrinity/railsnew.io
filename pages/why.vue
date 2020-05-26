@@ -113,19 +113,35 @@
     <paragraph> <img src="~/assets/sbux.jpg" /> </paragraph>
 
     <paragraph>
-      2. Storing and re-using your favorite `rails new` command lines (COMING
-      SOON - with the public release). Perhaps minimalistic (whatever that means
-      to YOU), stimulus-enabled or omakase BUT (postgres, rspec, no emails - you
-      get the idea). Set up once, use anytime in the future!
+      2. Verifying your setup. Follow detailed instructions to feel confident
+      that the railsbytes you added (Stimulus, Strimulus Reflex, Tailwind,
+      Bootstrap etc.) work by generating a controller and checking the view
+      (using the generated stuff). The instructions are tailored to the stack
+      you just set up!
     </paragraph>
     <paragraph>
-      3. Describing how each flag works / Linking to documentation / Displaying
-      what files would be added or changed (with diffs) etc. (COMING SOON - with
-      the public release)
+      3. Storing and re-using your favorite `rails new` command lines (COMING
+      SOON). Perhaps minimalistic (whatever that means to YOU), stimulus-enabled
+      or omakase BUT (postgres, rspec, no emails - you get the idea). Set up
+      once, use anytime in the future!
+    </paragraph>
+    <paragraph>
+      4. Describing how each flag works / Linking to documentation / Displaying
+      what files would be added or changed (with diffs) etc. (COMING SOON)
+    </paragraph>
+    <paragraph>
+      5. And more -
+      <n-link to="about#get-in-touch" class="underline text-indigo-800"
+        >get in touch</n-link
+      >
+      and let us know what else would you find useful!
     </paragraph>
     <paragraph>
       If it sounds interesting, check out the
-      <n-link to="live-demo">live demo</n-link> and give it a spin!
+      <n-link to="live-demo" class="underline text-indigo-800"
+        >live demo</n-link
+      >
+      and give it a spin!
     </paragraph>
   </div>
 </template>

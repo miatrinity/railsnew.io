@@ -24,6 +24,7 @@
     </paragraph>
 
     <h2
+      id="get-in-touch"
       class="text-3xl font-semibold antialiased text-gray-700 tracking-tight leading-tight mb-6"
     >
       Get in Touch
