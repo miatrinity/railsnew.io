@@ -8,8 +8,8 @@
           class="text-3xl leading-9 font-extrabold tracking-tight text-white sm:text-4xl sm:leading-10"
         >
           Want product news and updates?
-          <br class="hidden sm:inline" />
-          <span class="text-red-600">Sign up for our newsletter.</span>
+          <br class="hidden sm:inline " />
+          <span class="text-red-600 block">Sign up for our newsletter.</span>
         </h2>
       </div>
       <div class="mt-8 lg:mt-0 lg:ml-8">
