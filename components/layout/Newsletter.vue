@@ -17,11 +17,13 @@
           name="newsletter"
           data-netlify="true"
           action="/newsletter-signup"
+          method="POST"
           class="sm:flex"
         >
           <input
             aria-label="Email address"
             type="email"
+            name="email"
             required
             class="appearance-none w-full px-5 py-3 border border-transparent text-base leading-6 rounded-md text-gray-900 bg-white placeholder-gray-500 focus:outline-none focus:placeholder-gray-400 transition duration-150 ease-in-out sm:max-w-sx"
             placeholder="Enter your email"

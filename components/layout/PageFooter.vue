@@ -3,26 +3,12 @@
     <div
       class="max-w-screen-xl mx-auto py-12 px-4 overflow-hidden sm:px-6 lg:px-8"
     >
-      <nav class="-mx-5 -my-2 flex flex-wrap justify-center">
-        <div class="px-5 py-2">
-          <a
-            href="#"
-            class="text-base leading-6 text-gray-500 hover:text-gray-900"
-          >
-            About
-          </a>
-        </div>
-        <div class="px-5 py-2">
-          <a
-            href="#"
-            class="text-base leading-6 text-gray-500 hover:text-gray-900"
-          >
-            Blog
-          </a>
-        </div>
-      </nav>
       <div class="mt-8 flex justify-center">
-        <a href="#" class="ml-6 text-gray-400 hover:text-gray-500">
+        <a
+          href="https://twitter.com/TrinityTakei"
+          target="_blank"
+          class="ml-6 text-gray-400 hover:text-gray-500"
+        >
           <span class="sr-only">Twitter</span>
           <svg class="h-6 w-6" fill="currentColor" viewBox="0 0 24 24">
             <path
@@ -30,7 +16,11 @@
             />
           </svg>
         </a>
-        <a href="#" class="ml-6 text-gray-400 hover:text-gray-500">
+        <a
+          href="https://github.com/miatrinity"
+          target="_blank"
+          class="ml-6 text-gray-400 hover:text-gray-500"
+        >
           <span class="sr-only">GitHub</span>
           <svg class="h-6 w-6" fill="currentColor" viewBox="0 0 24 24">
             <path
