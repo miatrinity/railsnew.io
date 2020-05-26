@@ -13,7 +13,12 @@
         </h2>
       </div>
       <div class="mt-8 lg:mt-0 lg:ml-8">
-        <form class="sm:flex">
+        <form
+          name="newsletter"
+          data-netlify="true"
+          action="/newsletter-signup"
+          class="sm:flex"
+        >
           <input
             aria-label="Email address"
             type="email"
