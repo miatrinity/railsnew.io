@@ -5,8 +5,9 @@
   >
     <input
       v-model="appName"
-      class="appearance-none w-full px-5 py-3 border border-gray-300 text-base leading-6 rounded-md 
-              text-gray-400 bg-white placeholder-gray-500 focus:outline-none focus:shadow-outline focus:border-blue-300 
+      class="appearance-none 
+              w-full px-5 py-3 border-2 border-gray-300 text-base leading-6 mx-5 rounded-md 
+              text-gray-400 bg-white placeholder-gray-500 focus:outline-none focus:border-yellow-400 
               transition duration-150 ease-in-out max-w-lg"
       type="text"
       name="app-name"
