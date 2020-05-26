@@ -19,21 +19,21 @@
       and WTFs about creating a new Rails app from scratch.
     </paragraph>
 
-    <paragraph>
-      <img src="~/assets/rails-new-1.png" class="mb-1" />
-      <img src="~/assets/rails-new-2.png" class="mb-1" />
-      <img src="~/assets/rails-new-10.png" class="mb-1" />
-      <img src="~/assets/rails-new-12.png" class="mb-1" />
-      <img src="~/assets/rails-new-3.png" class="mb-1" />
-      <img src="~/assets/rails-new-4.png" class="mb-1" />
-      <img src="~/assets/rails-new-5.png" class="mb-1" />
-      <img src="~/assets/rails-new-6.png" class="mb-1" />
-      <img src="~/assets/rails-new-7.png" class="mb-1" />
-      <img src="~/assets/rails-new-8.png" class="mb-1" />
-      <img src="~/assets/rails-new-9.png" class="mb-1" />
-      <img src="~/assets/rails-new-11.png" class="mb-1" />
-      <img src="~/assets/rails-new-13.png" />
-    </paragraph>
+    <div>
+      <img src="~/assets/why-tweets/rails-new-1.png" class="mb-1 mx-auto" />
+      <img src="~/assets/why-tweets/rails-new-2.png" class="mb-1 mx-auto" />
+      <img src="~/assets/why-tweets/rails-new-10.png" class="mb-1 mx-auto" />
+      <img src="~/assets/why-tweets/rails-new-12.png" class="mb-1 mx-auto" />
+      <img src="~/assets/why-tweets/rails-new-3.png" class="mb-1 mx-auto" />
+      <img src="~/assets/why-tweets/rails-new-4.png" class="mb-1 mx-auto" />
+      <img src="~/assets/why-tweets/rails-new-5.png" class="mb-1 mx-auto" />
+      <img src="~/assets/why-tweets/rails-new-6.png" class="mb-1 mx-auto" />
+      <img src="~/assets/why-tweets/rails-new-7.png" class="mb-1 mx-auto" />
+      <img src="~/assets/why-tweets/rails-new-8.png" class="mb-1 mx-auto" />
+      <img src="~/assets/why-tweets/rails-new-9.png" class="mb-1 mx-auto" />
+      <img src="~/assets/why-tweets/rails-new-11.png" class="mb-1 mx-auto" />
+      <img src="~/assets/why-tweets/rails-new-13.png" class="mb-8 mx-auto" />
+    </div>
 
     <paragraph>
       And that's just what I gathered in a couple of minutes, following a quick
