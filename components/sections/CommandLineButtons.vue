@@ -18,11 +18,13 @@
     </a>
 
     <a
+      v-show="verificationLink !== ''"
       class="block bg-indigo-800 
              lg:rounded-lg md:rounded-lg xl:rounded-lg 
              mx-0 md:mx-5
              px-6 text-gray-100 shadow-2xl whitespace-no-wrap py-3"
-      href="comingsoon"
+      :href="verificationLink"
+      target="_blank"
     >
       Verify My Setup
     </a>
@@ -31,7 +33,8 @@
       class="block bg-indigo-800 
              md:rounded-lg lg:rounded-lg xl:rounded-lg 
              px-6 text-gray-100 shadow-2xl whitespace-no-wrap py-3"
-      href="comingsoon"
+      href="/comingsoon"
+      target="_blank"
     >
       Save to My Stuff
     </a>
@@ -42,6 +45,12 @@
 import eventBus from '@/eventBus.js'
 
 export default {
+  props: {
+    verificationLink: {
+      type: String,
+      default: ''
+    }
+  },
   methods: {
     copyToClipboard() {
       const tempInput = document.createElement('input')

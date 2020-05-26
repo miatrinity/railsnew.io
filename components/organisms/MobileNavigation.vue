@@ -38,25 +38,31 @@
               </div>
             </div>
             <div class="px-2 pt-2 pb-3">
-              <a
-                href="/"
+              <n-link
+                to="/"
                 class="block px-3 py-2 rounded-md text-base font-medium text-gray-700 hover:text-gray-900 hover:bg-gray-50 focus:outline-none focus:text-gray-900 focus:bg-gray-50 transition duration-150 ease-in-out"
-                >🏠️ Home</a
+                >🏠️ Home</n-link
+              >
+              <n-link
+                to="/why"
+                class="mt-1 block px-3 py-2 rounded-md text-base font-medium text-gray-700 hover:text-gray-900 hover:bg-gray-50 focus:outline-none focus:text-gray-900 focus:bg-gray-50 transition duration-150 ease-in-out"
+                >🤔 Why?</n-link
+              >
+              <n-link
+                to="/live-demo"
+                class="mt-1 block px-3 py-2 rounded-md text-base font-medium text-gray-700 hover:text-gray-900 hover:bg-gray-50 focus:outline-none focus:text-gray-900 focus:bg-gray-50 transition duration-150 ease-in-out"
+                >📽️ Live Demo</n-link
+              >
+              <n-link
+                to="/about"
+                class="mt-1 block px-3 py-2 rounded-md text-base font-medium text-gray-700 hover:text-gray-900 hover:bg-gray-50 focus:outline-none focus:text-gray-900 focus:bg-gray-50 transition duration-150 ease-in-out"
+                >📨 About / Contact</n-link
               >
               <a
-                href="/why"
-                class="mt-1 block px-3 py-2 rounded-md text-base font-medium text-gray-700 hover:text-gray-900 hover:bg-gray-50 focus:outline-none focus:text-gray-900 focus:bg-gray-50 transition duration-150 ease-in-out"
-                >🤔 Why?</a
-              >
-              <a
-                href="/live-demo"
-                class="mt-1 block px-3 py-2 rounded-md text-base font-medium text-gray-700 hover:text-gray-900 hover:bg-gray-50 focus:outline-none focus:text-gray-900 focus:bg-gray-50 transition duration-150 ease-in-out"
-                >📽️ Live Demo</a
-              >
-              <a
-                href="#"
-                class="mt-1 block px-3 py-2 rounded-md text-base font-medium text-gray-700 hover:text-gray-900 hover:bg-gray-50 focus:outline-none focus:text-gray-900 focus:bg-gray-50 transition duration-150 ease-in-out"
-                >📨 About / Contact</a
+                href="/comingsoon"
+                target="_blank"
+                class="ml-10 font-medium bg-indigo-800 rounded-lg p-2 text-gray-100 shadow-lg hover:text-gray-900 focus:outline-none focus:text-gray-900 transition duration-150 ease-in-out"
+                >My Stuff</a
               >
             </div>
           </div>
@@ -73,6 +79,11 @@ export default {
   props: {
     mobileMenuShowing: {
       type: Boolean
+    }
+  },
+  watch: {
+    $route() {
+      this.closeHamburgerMenu()
     }
   },
   methods: {

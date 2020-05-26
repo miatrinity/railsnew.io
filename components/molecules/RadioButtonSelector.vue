@@ -61,7 +61,6 @@ export default {
   },
   methods: {
     updateRadioButtonState(event) {
-      console.log(this)
       eventBus.$emit('radioButtonUpdated', this.itemName)
     }
   }

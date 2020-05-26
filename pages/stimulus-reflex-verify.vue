@@ -5,7 +5,7 @@
     <h1
       class="text-4xl font-semibold antialiased text-gray-700 tracking-tight leading-tight mb-6"
     >
-      Verify your Stimulus Reflex+Bootstrap Setup
+      Verify your Stimulus Reflex Setup
     </h1>
     <ol class="list-decimal leading-loose">
       <li>cd into the generated app</li>
@@ -23,10 +23,9 @@
   <span style="color: #a6e22e">data-reflex=</span><span style="color: #e6db74">&quot;click-&gt;CounterReflex#increment&quot;</span>
   <span style="color: #a6e22e">data-step=</span><span style="color: #e6db74">&quot;1&quot;</span> 
   <span style="color: #a6e22e">data-count=</span><span style="color: #e6db74">&quot;&lt;%= @count.to_i %&gt;&quot;</span>
-  <span style="color: #a6e22e">class=</span><span style="color: #e6db74">&quot;underline&quot;</span>
 <span style="color: #f92672">&gt;</span><span style="color: #eee">
   Click me to increment the number:</span>
-  <span style="color: #f92672">&lt;span</span> <span style="color: #a6e22e">class=</span><span style="color: #e6db74">&quot;text-danger display-4&quot;</span><span style="color: #f92672">&gt;</span>
+  <span style="color: #f92672">&lt;span</span><span style="color: #f92672">&gt;</span>
     <span style="color: #f92672">&lt;%= </span><span style="color: #eee">@count.to_i</span><span style="color: #f92672"> %&gt;</span>
   <span style="color: #f92672">&lt;/span&gt;</span>
 <span style="color: #f92672">&lt;/a&gt;</span>
@@ -63,9 +62,8 @@
         >
       </li>
       <li>
-        The number should be red (verifies that TailwindCSS works) and should be
-        incrementing when you click the "Click me to increment the number:" link
-        (verifies that Stimulus works)
+        The number should be incrementing when you click the "Click me to
+        increment the number:" link.
       </li>
     </ol>
   </div>

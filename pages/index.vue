@@ -22,7 +22,7 @@
         :email-flags="emailFlags"
         :testing-flags="testingFlags"
       />
-      <command-line-buttons />
+      <command-line-buttons :verification-link="verificationLink" />
     </div>
     <br />
     <section-header title="Choose Your Base" />
@@ -90,7 +90,7 @@ export default {
   head() {
     return {
       title:
-        'railsnew.io - the simplest way to generate a new Rails application with (or without!) all the bells and whistles.',
+        'railsnew.io - the simplest way to generate a new Rails app with (or without) all the bells and whistles',
       meta: [
         {
           hid: 'description',
@@ -126,6 +126,7 @@ export default {
     selectedJsFramework: '',
     selectedCssFramework: '',
     selectedFrontendFramework: '',
+    verificationLink: '',
     extraIngredientsJsFrameworkSelection: [
       {
         itemName: '',
@@ -464,6 +465,10 @@ export default {
                 this.setCheckboxState(this.frameworkFlags[3], false)
               }
             }
+            this.setVerificationLink(
+              this.selectedJsFramework,
+              this.selectedCssFramework
+            )
           } else if (section[0].group === 'extra-ingredients-css-framework') {
             this.selectedCssFramework = itemName
             if (
@@ -475,6 +480,10 @@ export default {
               // DO --skip-webpack-install - the railsbyte is already installing webpack
               Vue.set(this.leFrontendFlags[3], 'checked', true)
             }
+            this.setVerificationLink(
+              this.selectedJsFramework,
+              this.selectedCssFramework
+            )
           } else if (section[0].group === 'choose-your-base') {
             this.selectedBase = itemName
             if (itemName === 'Omakase') {
@@ -573,6 +582,23 @@ export default {
     setCheckboxState(field, checked) {
       Vue.set(field, 'checked', checked)
       Vue.set(field, 'disabled', true)
+    },
+    setVerificationLink(jsFramework, cssFramework) {
+      const railsBytes = jsFramework + '@' + cssFramework
+      const railsBytesToURL = {
+        '@': '',
+        'Stimulus.js@': '/stimulus-verify',
+        'Stimulus.js + Stimulus Reflex@': '/stimulus-reflex-verify',
+        '@TailwindCSS': '/tailwind-verify',
+        '@Bootstrap': '/bootstrap-verify',
+        'Stimulus.js@TailwindCSS': '/stimulus-tailwind-verify',
+        'Stimulus.js@Bootstrap': '/stimulus-bootstrap-verify',
+        'Stimulus.js + Stimulus Reflex@TailwindCSS':
+          '/stimulus-reflex-tailwind-verify',
+        'Stimulus.js + Stimulus Reflex@Bootstrap':
+          '/stimulus-reflex-bootstrap-verify'
+      }
+      this.verificationLink = railsBytesToURL[railsBytes]
     }
   }
 }

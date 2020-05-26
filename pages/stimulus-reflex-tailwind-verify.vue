@@ -33,7 +33,7 @@
 </pre>
         </div>
       </li>
-      <li>create <span class="italic">app/reflexes/counter_reflex.rb</span></li>
+      <li>> <code>touch app/reflexes/counter_reflex.rb</code></li>
       <li>
         paste this into
         <span class="italic">app/reflexes/counter_reflex.rb</span>:

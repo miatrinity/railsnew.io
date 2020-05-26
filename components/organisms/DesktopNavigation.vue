@@ -29,28 +29,29 @@
         </div>
       </div>
       <div class="hidden md:block">
-        <a
-          href="/"
+        <n-link
+          to="/"
           class="font-medium text-gray-500 hover:text-gray-900 focus:outline-none focus:text-gray-900 transition duration-150 ease-in-out"
-          >🏠️ Home</a
+          >🏠️ Home</n-link
         >
-        <a
-          href="/why"
+        <n-link
+          to="/why"
           class="ml-10 font-medium text-gray-500 hover:text-gray-900 focus:outline-none focus:text-gray-900 transition duration-150 ease-in-out"
-          >🤔 Why?</a
+          >🤔 Why?</n-link
         >
-        <a
-          href="/live-demo"
+        <n-link
+          to="/live-demo"
           class="ml-10 font-medium text-gray-500 hover:text-gray-900 focus:outline-none focus:text-gray-900 transition duration-150 ease-in-out"
-          >📽️ Live Demo</a
+          >📽️ Live Demo</n-link
         >
-        <a
-          href="/about"
+        <n-link
+          to="/about"
           class="ml-10 font-medium text-gray-500 hover:text-gray-900  focus:outline-none focus:text-gray-900 transition duration-150 ease-in-out"
-          >📨 About / Contact</a
+          >📨 About / Contact</n-link
         >
         <a
           href="/comingsoon"
+          target="_blank"
           class="ml-10 font-medium bg-indigo-800 rounded-lg p-2 text-gray-100 shadow-lg hover:text-gray-900 focus:outline-none focus:text-gray-900 transition duration-150 ease-in-out"
           >My Stuff</a
         >

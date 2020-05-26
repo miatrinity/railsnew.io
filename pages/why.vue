@@ -16,7 +16,7 @@
 
     <paragraph>
       There’s no shortage of confused/frustrated/angry tweets, forum messages,
-      and WTFs about creating a new Rails application from scratch.
+      and WTFs about creating a new Rails app from scratch.
     </paragraph>
 
     <paragraph>
@@ -129,7 +129,7 @@
     </paragraph>
     <paragraph>
       If it sounds interesting, check out the
-      <a href="live-demo">live demo</a> and give it a spin!
+      <n-link to="live-demo">live demo</n-link> and give it a spin!
     </paragraph>
   </div>
 </template>

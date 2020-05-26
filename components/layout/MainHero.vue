@@ -28,7 +28,7 @@
           <p class="pt-5 text-xl text-gray-700">
             <span class="font-semibold">railsnew.io</span>:
             <span class="italic">the</span> simplest way to generate a new Rails
-            application with (or without!) all the bells and whistles.
+            app with (or without!) all the bells and whistles.
           </p>
         </div>
       </div>
