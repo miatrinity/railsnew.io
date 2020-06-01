@@ -3,7 +3,7 @@
     <check-box-section
       :items="items"
       section-name="Testing 🔬"
-      description="MiniSpec or RSpec, that is the real quesiton!"
+      description="MiniSpec or RSpec, that is the real question!"
     />
   </div>
 </template>

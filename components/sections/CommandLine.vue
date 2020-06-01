@@ -23,6 +23,10 @@
 <script>
 export default {
   props: {
+    apiMode: {
+      type: Boolean,
+      default: false
+    },
     appName: {
       type: String,
       default: ''
@@ -73,12 +77,6 @@ export default {
         return []
       }
     },
-    // frontendFrameworkSelection: {
-    //   type: Array,
-    //   default() {
-    //     return []
-    //   }
-    // },
     testingFlags: {
       type: Array,
       default() {
@@ -96,7 +94,7 @@ export default {
     fullCommandLine() {
       return `rails new ${
         this.appName
-      } ${this.flagForSelectedDatabase()} ${this.flagForSelectedRailsTemplate()} ${[
+      } ${this.maybeApiMode()}${this.flagForSelectedDatabase()} ${this.flagForSelectedRailsTemplate()} ${[
         ...this.guestFavoriteFlags,
         ...this.starterFlags,
         ...this.frameworkFlags,
@@ -104,12 +102,19 @@ export default {
         ...this.leFrontendFlags,
         ...this.testingFlags
       ]
-        .filter((x) => x.checked)
-        .map((x) => x.itemName)
+        .filter((x) => !x.checked)
+        .map((x) => x.cliName)
         .join(' ')}`.replace(/  +/g, ' ')
     }
   },
   methods: {
+    maybeApiMode() {
+      if (this.apiMode) {
+        return '--api'
+      } else {
+        return ''
+      }
+    },
     flagForSelectedDatabase() {
       if (this.selectedDatabase === 'SQLite') {
         return ''
@@ -120,15 +125,6 @@ export default {
         return `-d ${databaseItem.cliName}`
       }
     },
-    // flagForSelectedFrontendFramework() {
-    //   if (this.selectedFrontendFramework === '') return ''
-
-    //   const frameworkItem = this.frontendFrameworkSelection.find(
-    //     (item) => item.itemName === this.selectedFrontendFramework
-    //   )
-
-    //   return `--webpack=${frameworkItem.cliName}`
-    // },
     flagForSelectedRailsTemplate() {
       if (this.selectedJsFramework === '' && this.selectedCssFramework === '')
         return ''

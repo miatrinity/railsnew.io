@@ -21,8 +21,8 @@
                   />
                 </div>
                 <p class="mt-1 text-sm leading-5 text-gray-300">
-                  Start from scratch and add a few things, or tweak omakase to
-                  your liking!
+                  Tweak omakase, use API mode, or start with a blank canvas and
+                  pick what you need!
                 </p>
               </div>
             </div>

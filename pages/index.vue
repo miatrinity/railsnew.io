@@ -10,6 +10,7 @@
       <!-- :frontend-framework-selection="frontendFrameworkSelection" -->
       <command-line
         :app-name="appName"
+        :api-mode="apiMode"
         :selected-js-framework="selectedJsFramework"
         :selected-css-framework="selectedCssFramework"
         :selected-database="selectedDatabase"
@@ -248,24 +249,27 @@ export default {
           if (section[0].group === 'extra-ingredients-js-framework') {
             this.selectedJsFramework = itemName
             if (itemName === '') {
-              Vue.set(this.starterFlags[0], 'disabled', false)
-              Vue.set(this.starterFlags[3], 'disabled', false)
-              Vue.set(this.leFrontendFlags[1], 'disabled', false)
-              Vue.set(this.leFrontendFlags[3], 'disabled', false)
-              Vue.set(this.frameworkFlags[3], 'disabled', false)
+              Vue.set(this.starterFlags[0], 'disabled', true)
+              Vue.set(this.starterFlags[3], 'disabled', true)
+              Vue.set(this.leFrontendFlags[1], 'disabled', true)
+              Vue.set(this.leFrontendFlags[3], 'disabled', true)
+              Vue.set(this.leFrontendFlags[4], 'disabled', true)
+              Vue.set(this.frameworkFlags[3], 'disabled', true)
             } else {
               // do NOT --skip-gemfile
-              this.setCheckboxState(this.starterFlags[0], false)
+              this.setCheckboxState(this.starterFlags[0], true)
               // do NOT --skip-bundler
-              this.setCheckboxState(this.starterFlags[3], false)
+              this.setCheckboxState(this.starterFlags[3], true)
               // do NOT --skip-javascript - otherwise it clashes with the railsbyte stuff
-              this.setCheckboxState(this.leFrontendFlags[1], false)
+              this.setCheckboxState(this.leFrontendFlags[1], true)
               // DO --skip-webpack-install - the railsbyte is already installing webpack
-              this.setCheckboxState(this.leFrontendFlags[3], true)
+              this.setCheckboxState(this.leFrontendFlags[3], false)
+              // do NOT --skip-yarn - otherwise it clashes with the railsbyte stuff
+              this.setCheckboxState(this.leFrontendFlags[4], true)
 
               // do NOT --skip-action-cable if Stimulus Reflex is being used
               if (itemName.includes('Reflex')) {
-                this.setCheckboxState(this.frameworkFlags[3], false)
+                this.setCheckboxState(this.frameworkFlags[3], true)
               }
             }
             this.setVerificationLink(
@@ -279,9 +283,11 @@ export default {
               itemName.includes('Bootstrap')
             ) {
               // do NOT --skip-javascript - otherwise it clashes with the railsbyte stuff
-              Vue.set(this.leFrontendFlags[1], 'checked', false)
+              Vue.set(this.leFrontendFlags[1], 'checked', true)
               // DO --skip-webpack-install - the railsbyte is already installing webpack
-              Vue.set(this.leFrontendFlags[3], 'checked', true)
+              Vue.set(this.leFrontendFlags[3], 'checked', false)
+              // do NOT --skip-yarn - otherwise it clashes with the railsbyte stuff
+              Vue.set(this.leFrontendFlags[4], 'checked', true)
             }
             this.setVerificationLink(
               this.selectedJsFramework,
@@ -289,8 +295,12 @@ export default {
             )
           } else if (section[0].group === 'choose-your-base') {
             this.selectedBase = itemName
+            this.apiMode = false
             if (itemName === 'Omakase') {
               this.setUpOmakase()
+            } else if (itemName === 'API Mode') {
+              this.setUpOmakase()
+              this.apiMode = true
             } else if (itemName === 'The Minimalist') {
               this.setUpTheMinimalist()
             } else if (itemName === 'The Early Days') {
@@ -299,9 +309,10 @@ export default {
           } else if (section[0].group === 'database') {
             this.selectedDatabase = itemName
           } else if (section[0].group === 'frontend-framework') {
-            Vue.set(this.starterFlags[0], 'checked', false)
-            Vue.set(this.leFrontendFlags[1], 'checked', false)
-            Vue.set(this.leFrontendFlags[3], 'checked', false)
+            Vue.set(this.starterFlags[0], 'checked', true)
+            Vue.set(this.leFrontendFlags[1], 'checked', true)
+            Vue.set(this.leFrontendFlags[3], 'checked', true)
+            Vue.set(this.leFrontendFlags[4], 'checked', true)
 
             this.selectedFrontendFramework = itemName
           }
@@ -313,6 +324,36 @@ export default {
     setUpOmakase() {
       this.selectedDatabase = 'SQLite'
       this.selectedFrontendFramework = ''
+      this.selectedJsFramework = ''
+      this.selectedCssFramework = ''
+      this.verifyPanelOpen = false
+      this.verificationLink = ''
+
+      Vue.set(this.guestFavoriteFlags[0], 'checked', true)
+      Vue.set(this.guestFavoriteFlags[1], 'checked', true)
+      Vue.set(this.guestFavoriteFlags[2], 'checked', true)
+      Vue.set(this.starterFlags[0], 'checked', true)
+      Vue.set(this.starterFlags[1], 'checked', true)
+      Vue.set(this.starterFlags[2], 'checked', true)
+      Vue.set(this.starterFlags[3], 'checked', true)
+      Vue.set(this.starterFlags[4], 'checked', true)
+      Vue.set(this.frameworkFlags[0], 'checked', true)
+      Vue.set(this.frameworkFlags[1], 'checked', true)
+      Vue.set(this.frameworkFlags[2], 'checked', true)
+      Vue.set(this.frameworkFlags[3], 'checked', true)
+      Vue.set(this.emailFlags[0], 'checked', true)
+      Vue.set(this.emailFlags[1], 'checked', true)
+      Vue.set(this.leFrontendFlags[0], 'checked', true)
+      Vue.set(this.leFrontendFlags[1], 'checked', true)
+      Vue.set(this.leFrontendFlags[2], 'checked', true)
+      Vue.set(this.leFrontendFlags[3], 'checked', true)
+      Vue.set(this.leFrontendFlags[4], 'checked', true)
+      Vue.set(this.testingFlags[0], 'checked', true)
+      Vue.set(this.testingFlags[1], 'checked', true)
+    },
+    setUpTheMinimalist() {
+      this.selectedDatabase = 'SQLite'
+      this.selectedFrontendFramework = ''
       Vue.set(this.guestFavoriteFlags[0], 'checked', false)
       Vue.set(this.guestFavoriteFlags[1], 'checked', false)
       Vue.set(this.guestFavoriteFlags[2], 'checked', false)
@@ -322,7 +363,7 @@ export default {
       Vue.set(this.starterFlags[3], 'checked', false)
       Vue.set(this.starterFlags[4], 'checked', false)
       Vue.set(this.frameworkFlags[0], 'checked', false)
-      Vue.set(this.frameworkFlags[1], 'checked', false)
+      Vue.set(this.frameworkFlags[1], 'checked', true)
       Vue.set(this.frameworkFlags[2], 'checked', false)
       Vue.set(this.frameworkFlags[3], 'checked', false)
       Vue.set(this.emailFlags[0], 'checked', false)
@@ -331,56 +372,34 @@ export default {
       Vue.set(this.leFrontendFlags[1], 'checked', false)
       Vue.set(this.leFrontendFlags[2], 'checked', false)
       Vue.set(this.leFrontendFlags[3], 'checked', false)
+      Vue.set(this.leFrontendFlags[4], 'checked', false)
       Vue.set(this.testingFlags[0], 'checked', false)
       Vue.set(this.testingFlags[1], 'checked', false)
-    },
-    setUpTheMinimalist() {
-      this.selectedDatabase = 'SQLite'
-      this.selectedFrontendFramework = ''
-      Vue.set(this.guestFavoriteFlags[0], 'checked', true)
-      Vue.set(this.guestFavoriteFlags[1], 'checked', true)
-      Vue.set(this.guestFavoriteFlags[2], 'checked', true)
-      Vue.set(this.starterFlags[0], 'checked', true)
-      Vue.set(this.starterFlags[1], 'checked', true)
-      Vue.set(this.starterFlags[2], 'checked', true)
-      Vue.set(this.starterFlags[3], 'checked', true)
-      Vue.set(this.starterFlags[4], 'checked', false)
-      Vue.set(this.frameworkFlags[0], 'checked', true)
-      Vue.set(this.frameworkFlags[1], 'checked', false)
-      Vue.set(this.frameworkFlags[2], 'checked', true)
-      Vue.set(this.frameworkFlags[3], 'checked', true)
-      Vue.set(this.emailFlags[0], 'checked', true)
-      Vue.set(this.emailFlags[1], 'checked', true)
-      Vue.set(this.leFrontendFlags[0], 'checked', true)
-      Vue.set(this.leFrontendFlags[1], 'checked', true)
-      Vue.set(this.leFrontendFlags[2], 'checked', true)
-      Vue.set(this.leFrontendFlags[3], 'checked', true)
-      Vue.set(this.testingFlags[0], 'checked', true)
-      Vue.set(this.testingFlags[1], 'checked', true)
     },
     setUpTheEarlyDays() {
       this.selectedDatabase = 'SQLite'
       this.selectedFrontendFramework = ''
-      Vue.set(this.guestFavoriteFlags[0], 'checked', true)
-      Vue.set(this.guestFavoriteFlags[1], 'checked', true)
-      Vue.set(this.guestFavoriteFlags[2], 'checked', true)
-      Vue.set(this.starterFlags[0], 'checked', false)
-      Vue.set(this.starterFlags[1], 'checked', false)
-      Vue.set(this.starterFlags[2], 'checked', true)
-      Vue.set(this.starterFlags[3], 'checked', false)
-      Vue.set(this.starterFlags[4], 'checked', false)
-      Vue.set(this.frameworkFlags[0], 'checked', true)
-      Vue.set(this.frameworkFlags[1], 'checked', false)
-      Vue.set(this.frameworkFlags[2], 'checked', true)
-      Vue.set(this.frameworkFlags[3], 'checked', true)
-      Vue.set(this.emailFlags[0], 'checked', false)
-      Vue.set(this.emailFlags[1], 'checked', true)
-      Vue.set(this.leFrontendFlags[0], 'checked', false)
-      Vue.set(this.leFrontendFlags[1], 'checked', true)
-      Vue.set(this.leFrontendFlags[2], 'checked', true)
-      Vue.set(this.leFrontendFlags[3], 'checked', true)
-      Vue.set(this.testingFlags[0], 'checked', false)
-      Vue.set(this.testingFlags[1], 'checked', true)
+      Vue.set(this.guestFavoriteFlags[0], 'checked', false)
+      Vue.set(this.guestFavoriteFlags[1], 'checked', false)
+      Vue.set(this.guestFavoriteFlags[2], 'checked', false)
+      Vue.set(this.starterFlags[0], 'checked', true)
+      Vue.set(this.starterFlags[1], 'checked', true)
+      Vue.set(this.starterFlags[2], 'checked', false)
+      Vue.set(this.starterFlags[3], 'checked', true)
+      Vue.set(this.starterFlags[4], 'checked', true)
+      Vue.set(this.frameworkFlags[0], 'checked', false)
+      Vue.set(this.frameworkFlags[1], 'checked', true)
+      Vue.set(this.frameworkFlags[2], 'checked', false)
+      Vue.set(this.frameworkFlags[3], 'checked', false)
+      Vue.set(this.emailFlags[0], 'checked', true)
+      Vue.set(this.emailFlags[1], 'checked', false)
+      Vue.set(this.leFrontendFlags[0], 'checked', true)
+      Vue.set(this.leFrontendFlags[1], 'checked', false)
+      Vue.set(this.leFrontendFlags[2], 'checked', false)
+      Vue.set(this.leFrontendFlags[3], 'checked', false)
+      Vue.set(this.leFrontendFlags[4], 'checked', false)
+      Vue.set(this.testingFlags[0], 'checked', true)
+      Vue.set(this.testingFlags[1], 'checked', false)
     },
     setCheckboxState(field, checked) {
       Vue.set(field, 'checked', checked)
@@ -421,16 +440,16 @@ export default {
     }
   },
   data: () => ({
-    isOpen: false,
     appName: 'my_awesome_app',
     selectedDatabase: 'SQLite',
-    selectedBase: 'The Minimalist',
+    selectedBase: 'Omakase',
     selectedJsFramework: '',
     selectedCssFramework: '',
     selectedTestingFramework: 'Minitest',
     selectedFrontendFramework: '',
     verificationLink: '',
     verifyPanelOpen: false,
+    apiMode: false,
     extraIngredientsJsFrameworkSelection: [
       {
         itemName: '',
@@ -487,9 +506,15 @@ export default {
     ],
     chooseYourBaseSelection: [
       {
-        itemName: 'The Minimalist',
-        description: '--skip-everything',
-        logo: 'MinimalistLogo',
+        itemName: 'Omakase',
+        description: 'Omakase is fine, but... (customize below)',
+        logo: 'OmakaseLogo',
+        group: 'choose-your-base'
+      },
+      {
+        itemName: 'API Mode',
+        description: 'Doing the heavy lifting on the client side!',
+        logo: 'ApiModeLogo',
         group: 'choose-your-base'
       },
       {
@@ -499,9 +524,9 @@ export default {
         group: 'choose-your-base'
       },
       {
-        itemName: 'Omakase',
-        description: 'Omakase is fine, but... (customize below)',
-        logo: 'OmakaseLogo',
+        itemName: 'The Minimalist',
+        description: '--skip-everything',
+        logo: 'MinimalistLogo',
         group: 'choose-your-base'
       }
     ],
@@ -532,20 +557,23 @@ export default {
     ],
     guestFavoriteFlags: [
       {
-        itemName: '--skip-spring',
+        itemName: 'Add spring?',
+        cliName: '--skip-spring',
         description: 'Rails application preloader',
         checked: true,
         disabled: false
       },
       {
-        itemName: '--skip-listen',
+        itemName: 'Add listen?',
+        cliName: '--skip-listen',
         description:
           'Listens to file modifications and notifies you about the changes',
         checked: true,
         disabled: false
       },
       {
-        itemName: '--skip-bootsnap',
+        itemName: 'Add bootsnap?',
+        cliName: '--skip-bootsnap',
         description: 'Boot large Ruby/Rails apps faster',
         checked: true,
         disabled: false
@@ -553,150 +581,140 @@ export default {
     ],
     starterFlags: [
       {
-        itemName: '--skip-gemfile',
-        description: "Don't create a Gemfile",
-        checked: false,
-        disabled: false
-      },
-      {
-        itemName: '--skip-git',
-        description: 'Skip .gitignore file',
+        itemName: 'Create Gemfile?',
+        cliName: '--skip-gemfile',
+        description: 'Create/skip Gemfile',
         checked: true,
         disabled: false
       },
       {
-        itemName: '--skip-keeps',
-        description: 'Skip source control .keep files',
+        itemName: 'Create .gitignore?',
+        cliName: '--skip-git',
+        description: 'Create/skip .gitignore file',
         checked: true,
         disabled: false
       },
       {
-        itemName: '--skip-bundle',
-        description: "Don't run bundle install",
-        checked: false,
+        itemName: 'Create .keep files?',
+        cliName: '--skip-keeps',
+        description: 'Create/skip git .keep files in empty directories',
+        checked: true,
         disabled: false
       },
       {
-        itemName: '--skip-puma',
+        itemName: 'Run `bundle install`?',
+        cliName: '--skip-bundle',
+        description: "Run (or don't) `bundle install` after generating Gemfile",
+        checked: true,
+        disabled: false
+      },
+      {
+        itemName:
+          'Create Puma config files (skip using a different app server)?',
+        cliName: '--skip-puma',
         description: 'Skip Puma-related files',
-        checked: false,
+        checked: true,
         disabled: false
       }
-      // NOTE: add possibility to specify starter template
     ],
     frameworkFlags: [
       {
-        itemName: '--skip-action-text',
-        description: 'Skip Action Text gem',
+        itemName: 'Using ActionText?',
+        cliName: '--skip-action-text',
+        description: 'ActionText: Rich text content and editing',
         checked: true,
         disabled: false
       },
       {
-        itemName: '--skip-active-record',
-        description: 'Skip Active Record files',
-        checked: false,
-        disabled: false
-      },
-      {
-        itemName: '--skip-active-storage',
-        description: 'Skip Active Storage files',
+        itemName: 'Using ActiveRecord?',
+        cliName: '--skip-active-record',
+        description: 'ActiveRecord: The default ORM',
         checked: true,
         disabled: false
       },
       {
-        itemName: '--skip-action-cable',
-        description: 'Skip Action Cable files',
+        itemName: 'Using ActiveStorage?',
+        cliName: '--skip-active-storage',
+        description: 'ActiveStorage: attach files to your ActiveRecord models',
+        checked: true,
+        disabled: false
+      },
+      {
+        itemName: 'Using ActionCable?',
+        cliName: '--skip-action-cable',
+        description: 'ActionCable: The power of WebSockets, here and now!',
         checked: true,
         disabled: false
       }
     ],
     emailFlags: [
       {
-        itemName: '--skip-action-mailer',
+        itemName: 'Using ActionMailer?',
+        cliName: '--skip-action-mailer',
         description:
-          'Send emails from your application using mailer classes and views',
+          'ActionMailer: Send emails from your application using mailer classes and views',
         checked: true,
         disabled: false
       },
       {
-        itemName: '--skip-action-mailbox',
-        description: 'Routes incoming emails to controller-like mailboxes',
+        itemName: 'Using ActionMailbox?',
+        cliName: '--skip-action-mailbox',
+        description:
+          'ActionMailbox: Routes incoming emails to controller-like mailboxes',
         checked: true,
         disabled: false
       }
     ],
     leFrontendFlags: [
       {
-        itemName: '--skip-sprockets',
-        description: 'Skip Sprockets files',
+        itemName: 'Using Sprockets?',
+        cliName: '--skip-sprockets',
+        description: 'Sprockets: Rack-based asset packaging system',
         checked: true,
         disabled: false
       },
       {
-        itemName: '--skip-javascript',
-        description: 'Skip JavaScript files',
+        itemName: 'Using Javascript?',
+        cliName: '--skip-javascript',
+        description:
+          'Add/Skip JavaScript files and config (Webpacker/Turbolinks)',
         checked: true,
         disabled: false
       },
       {
-        itemName: '--skip-turbolinks',
-        description: 'Skip turbolinks gem',
+        itemName: 'Using Turbolinks?',
+        cliName: '--skip-turbolinks',
+        description: 'Turbolinks makes navigating your web application faster',
         checked: true,
         disabled: false
       },
       {
-        itemName: '--skip-webpack-install',
-        description: "Don't run Webpack install",
+        itemName: 'Using Webpacker?',
+        cliName: '--skip-webpack-install',
+        description: 'Sensible defaults for great OTB Webpack experience',
+        checked: true,
+        disabled: false
+      },
+      {
+        itemName: 'Using Yarn?',
+        cliName: '--skip-yarn',
+        description: 'Yarn: Fast, reliable, and secure dependency management',
         checked: true,
         disabled: false
       }
     ],
-    // frontendFrameworkSelection: [
-    //   {
-    //     itemName: '',
-    //     description: 'No frontend framework',
-    //     cliName: '',
-    //     group: 'frontend-framework'
-    //   },
-    //   {
-    //     itemName: 'Vue.js',
-    //     description: 'vue',
-    //     logo: 'TODO',
-    //     cliName: 'vue',
-    //     group: 'frontend-framework'
-    //   },
-    //   {
-    //     itemName: 'React',
-    //     description: 'React',
-    //     logo: 'TODO',
-    //     cliName: 'react',
-    //     group: 'frontend-framework'
-    //   },
-    //   {
-    //     itemName: 'Elm',
-    //     description: 'elm',
-    //     logo: 'TODO',
-    //     cliName: 'elm',
-    //     group: 'frontend-framework'
-    //   },
-    //   {
-    //     itemName: 'Angular',
-    //     description: 'angular',
-    //     logo: 'TODO',
-    //     cliName: 'angular',
-    //     group: 'frontend-framework'
-    //   }
-    // ],
     testingFlags: [
       {
-        itemName: '--skip-test',
-        description: 'Skip test files',
+        itemName: 'Using Minitest?',
+        cliName: '--skip-test',
+        description: 'Add/Skip test files',
         checked: true,
         disabled: false
       },
       {
-        itemName: '--skip-system-test',
-        description: 'Skip system test files',
+        itemName: 'Using System Tests?',
+        cliName: '--skip-system-test',
+        description: 'Add/Skip system test files',
         checked: true,
         disabled: false
       }
