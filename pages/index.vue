@@ -249,12 +249,12 @@ export default {
           if (section[0].group === 'extra-ingredients-js-framework') {
             this.selectedJsFramework = itemName
             if (itemName === '') {
-              Vue.set(this.starterFlags[0], 'disabled', true)
-              Vue.set(this.starterFlags[3], 'disabled', true)
-              Vue.set(this.leFrontendFlags[1], 'disabled', true)
-              Vue.set(this.leFrontendFlags[3], 'disabled', true)
-              Vue.set(this.leFrontendFlags[4], 'disabled', true)
-              Vue.set(this.frameworkFlags[3], 'disabled', true)
+              Vue.set(this.starterFlags[0], 'disabled', false)
+              Vue.set(this.starterFlags[3], 'disabled', false)
+              Vue.set(this.leFrontendFlags[1], 'disabled', false)
+              Vue.set(this.leFrontendFlags[3], 'disabled', false)
+              Vue.set(this.leFrontendFlags[4], 'disabled', false)
+              Vue.set(this.frameworkFlags[3], 'disabled', false)
             } else {
               // do NOT --skip-gemfile
               this.setCheckboxState(this.starterFlags[0], true)
@@ -350,6 +350,14 @@ export default {
       Vue.set(this.leFrontendFlags[4], 'checked', true)
       Vue.set(this.testingFlags[0], 'checked', true)
       Vue.set(this.testingFlags[1], 'checked', true)
+
+      // re-enable "Disabled by railsbyte" checkboxes
+      Vue.set(this.starterFlags[0], 'disabled', false)
+      Vue.set(this.starterFlags[3], 'disabled', false)
+      Vue.set(this.leFrontendFlags[1], 'disabled', false)
+      Vue.set(this.leFrontendFlags[3], 'disabled', false)
+      Vue.set(this.leFrontendFlags[4], 'disabled', false)
+      Vue.set(this.frameworkFlags[3], 'disabled', false)
     },
     setUpTheMinimalist() {
       this.selectedDatabase = 'SQLite'
