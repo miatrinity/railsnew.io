@@ -610,7 +610,7 @@ export default {
       },
       {
         itemName:
-          'Create Puma config files (skip using a different app server)?',
+          'Create Puma config files (skip if using a different app server)?',
         cliName: '--skip-puma',
         description: 'Skip Puma-related files',
         checked: true,
@@ -619,28 +619,28 @@ export default {
     ],
     frameworkFlags: [
       {
-        itemName: 'Using ActionText?',
+        itemName: 'Use ActionText?',
         cliName: '--skip-action-text',
         description: 'ActionText: Rich text content and editing',
         checked: true,
         disabled: false
       },
       {
-        itemName: 'Using ActiveRecord?',
+        itemName: 'Use ActiveRecord?',
         cliName: '--skip-active-record',
         description: 'ActiveRecord: The default ORM',
         checked: true,
         disabled: false
       },
       {
-        itemName: 'Using ActiveStorage?',
+        itemName: 'Use ActiveStorage?',
         cliName: '--skip-active-storage',
         description: 'ActiveStorage: attach files to your ActiveRecord models',
         checked: true,
         disabled: false
       },
       {
-        itemName: 'Using ActionCable?',
+        itemName: 'Use ActionCable?',
         cliName: '--skip-action-cable',
         description: 'ActionCable: The power of WebSockets, here and now!',
         checked: true,
@@ -649,7 +649,7 @@ export default {
     ],
     emailFlags: [
       {
-        itemName: 'Using ActionMailer?',
+        itemName: 'Use ActionMailer?',
         cliName: '--skip-action-mailer',
         description:
           'ActionMailer: Send emails from your application using mailer classes and views',
@@ -657,7 +657,7 @@ export default {
         disabled: false
       },
       {
-        itemName: 'Using ActionMailbox?',
+        itemName: 'Use ActionMailbox?',
         cliName: '--skip-action-mailbox',
         description:
           'ActionMailbox: Routes incoming emails to controller-like mailboxes',
@@ -667,14 +667,14 @@ export default {
     ],
     leFrontendFlags: [
       {
-        itemName: 'Using Sprockets?',
+        itemName: 'Use Sprockets?',
         cliName: '--skip-sprockets',
         description: 'Sprockets: Rack-based asset packaging system',
         checked: true,
         disabled: false
       },
       {
-        itemName: 'Using Javascript?',
+        itemName: 'Use Javascript?',
         cliName: '--skip-javascript',
         description:
           'Add/Skip JavaScript files and config (Webpacker/Turbolinks)',
@@ -682,21 +682,21 @@ export default {
         disabled: false
       },
       {
-        itemName: 'Using Turbolinks?',
+        itemName: 'Use Turbolinks?',
         cliName: '--skip-turbolinks',
         description: 'Turbolinks makes navigating your web application faster',
         checked: true,
         disabled: false
       },
       {
-        itemName: 'Using Webpacker?',
+        itemName: 'Use Webpacker?',
         cliName: '--skip-webpack-install',
         description: 'Sensible defaults for great OTB Webpack experience',
         checked: true,
         disabled: false
       },
       {
-        itemName: 'Using Yarn?',
+        itemName: 'Use Yarn?',
         cliName: '--skip-yarn',
         description: 'Yarn: Fast, reliable, and secure dependency management',
         checked: true,
@@ -705,14 +705,14 @@ export default {
     ],
     testingFlags: [
       {
-        itemName: 'Using Minitest?',
+        itemName: 'Use Minitest?',
         cliName: '--skip-test',
         description: 'Add/Skip test files',
         checked: true,
         disabled: false
       },
       {
-        itemName: 'Using System Tests?',
+        itemName: 'Use System Tests?',
         cliName: '--skip-system-test',
         description: 'Add/Skip system test files',
         checked: true,
