@@ -14,13 +14,13 @@
       </div>
       <div class="mt-8 lg:mt-0 lg:ml-8">
         <form
-          name="newsletter"
-          data-netlify="true"
-          action="/newsletter-signup"
+          action="https://buttondown.email/api/emails/embed-subscribe/MiaTrinity"
           method="POST"
+          target="popupwindow"
+          onsubmit="window.open('https://buttondown.email/MiaTrinity', 'popupwindow')"
           class="sm:flex"
         >
-          <input type="hidden" name="form-name" value="newsletter" />
+          <input type="hidden" value="1" name="embed" />
           <input
             aria-label="Email address"
             type="email"
