@@ -94,7 +94,7 @@ export default {
     fullCommandLine() {
       return `rails new ${
         this.appName
-      } ${this.maybeApiMode()}${this.flagForSelectedDatabase()} ${this.flagForSelectedRailsTemplate()} ${[
+      } ${this.maybeApiMode()} ${this.flagForSelectedDatabase()} ${this.flagForSelectedRailsTemplate()} ${[
         ...this.guestFavoriteFlags,
         ...this.starterFlags,
         ...this.frameworkFlags,
