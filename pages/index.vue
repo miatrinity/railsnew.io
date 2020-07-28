@@ -463,7 +463,8 @@ export default {
       {
         itemName: '',
         description: 'None',
-        group: 'extra-ingredients-js-framework'
+        group: 'extra-ingredients-js-framework',
+        logo: 'DefaultLogo'
       },
       {
         itemName: 'Stimulus.js',
@@ -483,7 +484,8 @@ export default {
       {
         itemName: '',
         description: 'None',
-        group: 'extra-ingredients-css-framework'
+        group: 'extra-ingredients-css-framework',
+        logo: 'DefaultLogo'
       },
       {
         itemName: 'TailwindCSS',
@@ -504,7 +506,8 @@ export default {
       {
         itemName: 'Minitest',
         description: 'The default testing framework',
-        group: 'extra-ingredients-testing-framework'
+        group: 'extra-ingredients-testing-framework',
+        logo: 'DefaultLogo'
       },
       {
         itemName: 'RSpec',
