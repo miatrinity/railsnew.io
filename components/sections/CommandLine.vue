@@ -43,6 +43,10 @@ export default {
       type: String,
       default: ''
     },
+    selectedTestingFramework: {
+      type: String,
+      default: ''
+    },
     selectedFrontendFramework: {
       type: String,
       default: ''
@@ -126,18 +130,20 @@ export default {
       }
     },
     flagForSelectedRailsTemplate() {
-      if (this.selectedJsFramework === '' && this.selectedCssFramework === '')
+      if (
+        this.selectedJsFramework === '' &&
+        this.selectedCssFramework === '' &&
+        this.selectedTestingFramework === ''
+      )
         return ''
 
+      // TEMPLATE COMBOS START
       const templateCombosToTemplateURL = {
-        // single templates
-        'Stimulus.js:': 'https://www.railsbytes.com/script/V33s33',
-        'Stimulus.js + Stimulus Reflex:':
+        'Stimulus.js': 'https://www.railsbytes.com/script/V33s33',
+        'Stimulus.js + Stimulus Reflex':
           'https://www.railsbytes.com/script/zr4s0Y',
-        ':TailwindCSS': 'https://www.railsbytes.com/script/X8BsGy',
-        ':Bootstrap': 'https://www.railsbytes.com/script/VMys5p',
-
-        // combos
+        'TailwindCSS': 'https://www.railsbytes.com/script/X8BsGy',
+        'Bootstrap': 'https://www.railsbytes.com/script/VMys5p',
         'Stimulus.js:TailwindCSS': 'https://www.railsbytes.com/script/zyvsbW',
         'Stimulus.js:Bootstrap': 'https://www.railsbytes.com/script/xjNsAn',
         'Stimulus.js + Stimulus Reflex:TailwindCSS':
@@ -145,11 +151,15 @@ export default {
         'Stimulus.js + Stimulus Reflex:Bootstrap':
           'https://www.railsbytes.com/script/XnJs52'
       }
+      // TEMPLATE COMBOS END
 
       const selectedRailsBytes = [
         this.selectedJsFramework,
-        this.selectedCssFramework
-      ].join(':')
+        this.selectedCssFramework,
+        this.selectedTestingFramework
+      ]
+        .filter((a) => a !== '')
+        .join(':')
 
       // console.log('>>' + selectedRailsBytes + '<<')
 
