@@ -42,14 +42,12 @@
 
 <script>
 import RadioButtonSelector from '@/components/molecules/RadioButtonSelector'
-// import StimulusLogo from '@/components/svgs/StimulusLogo'
-// import StimulusReflexLogo from '@/components/svgs/StimulusReflexLogo'
+import RSpecLogo from '@/components/svgs/RSpecLogo'
 
 export default {
   components: {
-    // StimulusLogo,
-    // StimulusReflexLogo,
-    RadioButtonSelector
+    RadioButtonSelector,
+    RSpecLogo
   },
   props: {
     items: {
