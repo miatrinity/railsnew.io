@@ -20,9 +20,6 @@
               </div>
             </div>
           </div>
-          <div class="bg-red-500 text-xl p-2 text-center text-gray-200 mb-1">
-            Coming Soon (this week)!
-          </div>
           <ul aria-disabled="true">
             <radio-button-selector
               v-for="item in items"
@@ -43,11 +40,13 @@
 <script>
 import RadioButtonSelector from '@/components/molecules/RadioButtonSelector'
 import RSpecLogo from '@/components/svgs/RSpecLogo'
+import DefaultLogo from '@/components/svgs/DefaultLogo'
 
 export default {
   components: {
     RadioButtonSelector,
-    RSpecLogo
+    RSpecLogo,
+    DefaultLogo
   },
   props: {
     items: {
