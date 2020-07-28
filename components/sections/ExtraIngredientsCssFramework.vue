@@ -41,12 +41,14 @@
 import RadioButtonSelector from '@/components/molecules/RadioButtonSelector'
 import TailwindLogo from '@/components/svgs/TailwindLogo'
 import BootstrapLogo from '@/components/svgs/BootstrapLogo'
+import DefaultLogo from '@/components/svgs/DefaultLogo'
 
 export default {
   components: {
     RadioButtonSelector,
     TailwindLogo,
-    BootstrapLogo
+    BootstrapLogo,
+    DefaultLogo
   },
   props: {
     items: {

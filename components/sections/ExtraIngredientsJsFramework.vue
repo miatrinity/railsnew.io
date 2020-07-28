@@ -41,12 +41,14 @@
 import RadioButtonSelector from '@/components/molecules/RadioButtonSelector'
 import StimulusLogo from '@/components/svgs/StimulusLogo'
 import StimulusReflexLogo from '@/components/svgs/StimulusReflexLogo'
+import DefaultLogo from '@/components/svgs/DefaultLogo'
 
 export default {
   components: {
     StimulusLogo,
     StimulusReflexLogo,
-    RadioButtonSelector
+    RadioButtonSelector,
+    DefaultLogo
   },
   props: {
     items: {
