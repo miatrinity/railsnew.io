@@ -13,6 +13,7 @@
         :api-mode="apiMode"
         :selected-js-framework="selectedJsFramework"
         :selected-css-framework="selectedCssFramework"
+        :selected-testing-framework="selectedTestingFramework"
         :selected-database="selectedDatabase"
         :selected-frontend-framework="selectedFrontendFramework"
         :database-selection="databaseSelection"
@@ -509,6 +510,7 @@ export default {
         itemName: 'RSpec',
         description:
           'The non-default testing framework used by (almost) everyone',
+        logo: 'RSpecLogo',
         group: 'extra-ingredients-testing-framework'
       }
     ],
