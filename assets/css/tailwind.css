@@ -30,6 +30,13 @@ body {
   font: 1em sans-serif;
   padding: 20px 20px;
   color: #F0FFF4;
-  border-radius: 0.5rem;
-  
+  border-radius: 0.5rem; 
+}
+
+pre.code {
+  color: #4AF626;
+  background: #000000;
+  padding: 0.5rem;
+  line-height: 1.2rem;
+  font-size: 1rem;
 }
