@@ -145,6 +145,16 @@
             ) === '@TailwindCSS@RSpec'
         "
       />
+      <bootstrap-r-spec-verify
+        v-show="
+          verifyPanelOpen &&
+            currentRailsBytesCombo(
+              selectedJsFramework,
+              selectedCssFramework,
+              selectedTestingFramework
+            ) === '@Bootstrap@RSpec'
+        "
+      />
     </div>
     <br />
     <section-header title="Choose Your Base" />
@@ -210,6 +220,7 @@ import StimulusVerify from '@/components/verify/StimulusVerify'
 import TailwindVerify from '@/components/verify/TailwindVerify'
 import RSpecVerify from '@/components/verify/RSpecVerify'
 import RSpecStimulusjsVerify from '@/components/verify/RSpecStimulusjsVerify'
+import BootstrapRSpecVerify from '@/components/verify/BootstrapRSpecVerify'
 import RSpecStimulusjsStimulusReflexVerify from '@/components/verify/RSpecStimulusjsStimulusReflexVerify'
 import RSpecTailwindCSSVerify from '@/components/verify/RSpecTailwindCSSVerify'
 import SectionHeader from '@/components/sections/SectionHeader'
@@ -233,6 +244,7 @@ export default {
     CommandLine,
     CommandLineButtons,
     BootstrapVerify,
+    BootstrapRSpecVerify,
     StimulusBootstrapVerify,
     StimulusReflexBootstrapVerify,
     StimulusReflexTailwindVerify,
@@ -508,7 +520,8 @@ export default {
         '@@RSpec': '/rspec-verify',
         'Stimulus.js@@RSpec': '/stimulus-rspec-verify',
         'Stimulus.js + Stimulus Reflex@@RSpec': '',
-        '@TailwindCSS@RSpec': ''
+        '@TailwindCSS@RSpec': '',
+        '@Bootstrap@RSpec': ''
       }
       this.verificationLink = railsBytesToURL[railsBytes]
     },

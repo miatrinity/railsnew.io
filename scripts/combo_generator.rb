@@ -117,7 +117,7 @@ class ComboGenerator
       existing_combos
     )
         
-    generate_verification_file(combo_key: 'Stimulus.js:RSpec')
+    generate_verification_file(combo_key: 'Bootstrap:RSpec')
   end
 
   private
