@@ -5,7 +5,7 @@
         class="flex justify-between text-4xl font-semibold antialiased text-gray-700 mb-6 pt-6 tracking-tight leading-tight"
       >
         <h1>
-          Verify your Tailwind Setup
+          Verify your TailwindCSS + RSpec Setup
         </h1>
         <div
           class="hover:bg-gray-900 hover:text-gray-200 rounded-lg p-3 text-gray-500 text-3xl"
@@ -17,6 +17,7 @@
       <ol class="list-decimal leading-loose">
         <li>cd into the generated app</li>
         <li><pre class="code">> rails g controller verify index</pre></li>
+
         <li>
           paste this into
           <span class="italic">app/views/verify/index.html.erb</span>:
@@ -30,10 +31,12 @@
 </pre>
           </div>
         </li>
+
         <li><pre class="code">> bin/webpack-dev-server</pre></li>
         <li><pre class="code">> bin/rails s -p 4242</pre></li>
         <li>
           <pre class="code">> open http://localhost:4242/verify/index</pre>
+          <br />
           (or simply visit
           <a
             href="http://localhost:4242/verify/index"
@@ -41,8 +44,24 @@
             >http://localhost:4242/verify/index</a
           >)
         </li>
+
         <li>
-          Verify that the text 'Hello, Tailwind!' is rendered in red.
+          To <strong>verify Tailwind</strong>: page should contain 'Hello,
+          Tailwind!' rendered in red.
+        </li>
+
+        <li>
+          To <strong>verify RSpec</strong>: type this into your console:
+          <pre class="code">> rspec</pre>
+
+          You should see something like:
+          <pre class="code">
+No examples found.
+
+Finished in 0.00022 seconds (files took 0.06779 seconds to load)
+0 examples, 0 failures            
+  </pre
+          >
         </li>
       </ol>
     </div>
