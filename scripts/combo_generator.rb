@@ -117,7 +117,9 @@ class ComboGenerator
       existing_combos
     )
         
-    generate_verification_file(combo_key: 'Stimulus.js:TailwindCSS:RSpec')
+    generate_verification_file(combo_key: 'Stimulus.js:Bootstrap:RSpec')
+    generate_verification_file(combo_key: 'Stimulus.js + Stimulus Reflex:TailwindCSS:RSpec')
+    generate_verification_file(combo_key: 'Stimulus.js + Stimulus Reflex:Bootstrap:RSpec')
   end
 
   private

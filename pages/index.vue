@@ -1,3 +1,4 @@
+/* eslint-disable prettier/prettier */
 <template>
   <div>
     <main-hero />
@@ -165,6 +166,36 @@
             ) === 'Stimulus.js@TailwindCSS@RSpec'
         "
       />
+      <bootstrap-r-spec-stimulusjs-stimulus-reflex-verify
+        v-show="
+          verifyPanelOpen &&
+            currentRailsBytesCombo(
+              selectedJsFramework,
+              selectedCssFramework,
+              selectedTestingFramework
+            ) === 'Stimulus.js + Stimulus Reflex@Bootstrap@RSpec'
+        "
+      />
+      <bootstrap-r-spec-stimulusjs-verify
+        v-show="
+          verifyPanelOpen &&
+            currentRailsBytesCombo(
+              selectedJsFramework,
+              selectedCssFramework,
+              selectedTestingFramework
+            ) === 'Stimulus.js@Bootstrap@RSpec'
+        "
+      />
+      <r-spec-stimulusjs-stimulus-reflex-tailwind-c-s-s-verify
+        v-show="
+          verifyPanelOpen &&
+            currentRailsBytesCombo(
+              selectedJsFramework,
+              selectedCssFramework,
+              selectedTestingFramework
+            ) === 'Stimulus.js + Stimulus Reflex@TailwindCSS@RSpec'
+        "
+      />
     </div>
     <br />
     <section-header title="Choose Your Base" />
@@ -221,6 +252,8 @@ import AppNameInput from '@/components/sections/AppNameInput'
 import CommandLine from '@/components/sections/CommandLine'
 import CommandLineButtons from '@/components/sections/CommandLineButtons'
 import BootstrapVerify from '@/components/verify/BootstrapVerify'
+import BootstrapRSpecStimulusjsStimulusReflexVerify from '@/components/verify/BootstrapRSpecStimulusjsStimulusReflexVerify'
+import BootstrapRSpecStimulusjsVerify from '@/components/verify/BootstrapRSpecStimulusjsVerify'
 import StimulusBootstrapVerify from '@/components/verify/StimulusBootstrapVerify'
 import StimulusReflexBootstrapVerify from '@/components/verify/StimulusReflexBootstrapVerify'
 import StimulusReflexTailwindVerify from '@/components/verify/StimulusReflexTailwindVerify'
@@ -231,6 +264,7 @@ import TailwindVerify from '@/components/verify/TailwindVerify'
 import RSpecVerify from '@/components/verify/RSpecVerify'
 import RSpecStimulusjsVerify from '@/components/verify/RSpecStimulusjsVerify'
 import RSpecStimulusjsTailwindCSSVerify from '@/components/verify/RSpecStimulusjsTailwindCSSVerify'
+import RSpecStimulusjsStimulusReflexTailwindCSSVerify from '@/components/verify/RSpecStimulusjsStimulusReflexTailwindCSSVerify'
 import BootstrapRSpecVerify from '@/components/verify/BootstrapRSpecVerify'
 import RSpecStimulusjsStimulusReflexVerify from '@/components/verify/RSpecStimulusjsStimulusReflexVerify'
 import RSpecTailwindCSSVerify from '@/components/verify/RSpecTailwindCSSVerify'
@@ -256,6 +290,8 @@ export default {
     CommandLineButtons,
     BootstrapVerify,
     BootstrapRSpecVerify,
+    BootstrapRSpecStimulusjsStimulusReflexVerify,
+    BootstrapRSpecStimulusjsVerify,
     StimulusBootstrapVerify,
     StimulusReflexBootstrapVerify,
     StimulusReflexTailwindVerify,
@@ -268,6 +304,7 @@ export default {
     RSpecStimulusjsVerify,
     RSpecStimulusjsTailwindCSSVerify,
     RSpecStimulusjsStimulusReflexVerify,
+    RSpecStimulusjsStimulusReflexTailwindCSSVerify,
     SectionHeader,
     ExtraIngredientsJsFramework,
     ExtraIngredientsCssFramework,
@@ -534,7 +571,10 @@ export default {
         'Stimulus.js + Stimulus Reflex@@RSpec': '#',
         '@TailwindCSS@RSpec': '#',
         '@Bootstrap@RSpec': '#',
-        'Stimulus.js@TailwindCSS@RSpec': '#'
+        'Stimulus.js@TailwindCSS@RSpec': '#',
+        'Stimulus.js + Stimulus Reflex@Bootstrap@RSpec': '#',
+        'Stimulus.js + Stimulus Reflex@TailwindCSS@RSpec': '#',
+        'Stimulus.js@Bootstrap@RSpec': '#'
       }
       this.verificationLink = railsBytesToURL[railsBytes]
     },
