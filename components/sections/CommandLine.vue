@@ -133,9 +133,13 @@ export default {
       if (
         this.selectedJsFramework === '' &&
         this.selectedCssFramework === '' &&
-        this.selectedTestingFramework === ''
+        this.selectedTestingFramework === 'Minitest'
       )
         return ''
+
+      if (this.selectedTestingFramework === 'Minitest') {
+        this.selectedTestingFramework = ''
+      }
 
       // TEMPLATE COMBOS START
       const templateCombosToTemplateURL = {
@@ -144,12 +148,14 @@ export default {
           'https://www.railsbytes.com/script/zr4s0Y',
         'TailwindCSS': 'https://www.railsbytes.com/script/X8BsGy',
         'Bootstrap': 'https://www.railsbytes.com/script/VMys5p',
+        'RSpec': 'https://www.railsbytes.com/script/VD7sra',
         'Stimulus.js:TailwindCSS': 'https://www.railsbytes.com/script/zyvsbW',
         'Stimulus.js:Bootstrap': 'https://www.railsbytes.com/script/xjNsAn',
         'Stimulus.js + Stimulus Reflex:TailwindCSS':
           'https://www.railsbytes.com/script/z0gsd8',
         'Stimulus.js + Stimulus Reflex:Bootstrap':
-          'https://www.railsbytes.com/script/XnJs52'
+          'https://www.railsbytes.com/script/XnJs52',
+        'Stimulus.js:RSpec': 'https://www.railsbytes.com/script/XnJsb5'
       }
       // TEMPLATE COMBOS END
 
