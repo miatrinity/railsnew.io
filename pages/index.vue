@@ -30,8 +30,9 @@
           verifyPanelOpen &&
             currentRailsBytesCombo(
               selectedJsFramework,
-              selectedCssFramework
-            ) === 'Stimulus.js@'
+              selectedCssFramework,
+              selectedTestingFramework
+            ) === 'Stimulus.js@@'
         "
       />
       <stimulus-reflex-verify
@@ -39,8 +40,9 @@
           verifyPanelOpen &&
             currentRailsBytesCombo(
               selectedJsFramework,
-              selectedCssFramework
-            ) === 'Stimulus.js + Stimulus Reflex@'
+              selectedCssFramework,
+              selectedTestingFramework
+            ) === 'Stimulus.js + Stimulus Reflex@@'
         "
       />
       <tailwind-verify
@@ -48,8 +50,9 @@
           verifyPanelOpen &&
             currentRailsBytesCombo(
               selectedJsFramework,
-              selectedCssFramework
-            ) === '@TailwindCSS'
+              selectedCssFramework,
+              selectedTestingFramework
+            ) === '@TailwindCSS@'
         "
       />
       <bootstrap-verify
@@ -57,8 +60,9 @@
           verifyPanelOpen &&
             currentRailsBytesCombo(
               selectedJsFramework,
-              selectedCssFramework
-            ) === '@Bootstrap'
+              selectedCssFramework,
+              selectedTestingFramework
+            ) === '@Bootstrap@'
         "
       />
       <stimulus-tailwind-verify
@@ -66,8 +70,9 @@
           verifyPanelOpen &&
             currentRailsBytesCombo(
               selectedJsFramework,
-              selectedCssFramework
-            ) === 'Stimulus.js@TailwindCSS'
+              selectedCssFramework,
+              selectedTestingFramework
+            ) === 'Stimulus.js@TailwindCSS@'
         "
       />
       <stimulus-bootstrap-verify
@@ -75,8 +80,9 @@
           verifyPanelOpen &&
             currentRailsBytesCombo(
               selectedJsFramework,
-              selectedCssFramework
-            ) === 'Stimulus.js@Bootstrap'
+              selectedCssFramework,
+              selectedTestingFramework
+            ) === 'Stimulus.js@Bootstrap@'
         "
       />
       <stimulus-reflex-tailwind-verify
@@ -84,8 +90,9 @@
           verifyPanelOpen &&
             currentRailsBytesCombo(
               selectedJsFramework,
-              selectedCssFramework
-            ) === 'Stimulus.js + Stimulus Reflex@TailwindCSS'
+              selectedCssFramework,
+              selectedTestingFramework
+            ) === 'Stimulus.js + Stimulus Reflex@TailwindCSS@'
         "
       />
       <stimulus-reflex-bootstrap-verify
@@ -93,8 +100,29 @@
           verifyPanelOpen &&
             currentRailsBytesCombo(
               selectedJsFramework,
-              selectedCssFramework
-            ) === 'Stimulus.js + Stimulus Reflex@Bootstrap'
+              selectedCssFramework,
+              selectedTestingFramework
+            ) === 'Stimulus.js + Stimulus Reflex@Bootstrap@'
+        "
+      />
+      <r-spec-verify
+        v-show="
+          verifyPanelOpen &&
+            currentRailsBytesCombo(
+              selectedJsFramework,
+              selectedCssFramework,
+              selectedTestingFramework
+            ) === '@@RSpec'
+        "
+      />
+      <r-spec-stimulusjs-verify
+        v-show="
+          verifyPanelOpen &&
+            currentRailsBytesCombo(
+              selectedJsFramework,
+              selectedCssFramework,
+              selectedTestingFramework
+            ) === 'Stimulus.js@@RSpec'
         "
       />
     </div>
@@ -160,6 +188,8 @@ import StimulusReflexVerify from '@/components/verify/StimulusReflexVerify'
 import StimulusTailwindVerify from '@/components/verify/StimulusTailwindVerify'
 import StimulusVerify from '@/components/verify/StimulusVerify'
 import TailwindVerify from '@/components/verify/TailwindVerify'
+import RSpecVerify from '@/components/verify/RSpecVerify'
+import RSpecStimulusjsVerify from '@/components/verify/RSpecStimulusjsVerify'
 import SectionHeader from '@/components/sections/SectionHeader'
 import ExtraIngredientsJsFramework from '@/components/sections/ExtraIngredientsJsFramework'
 import ExtraIngredientsCssFramework from '@/components/sections/ExtraIngredientsCssFramework'
@@ -188,6 +218,8 @@ export default {
     StimulusTailwindVerify,
     StimulusVerify,
     TailwindVerify,
+    RSpecVerify,
+    RSpecStimulusjsVerify,
     SectionHeader,
     ExtraIngredientsJsFramework,
     ExtraIngredientsCssFramework,
@@ -239,13 +271,14 @@ export default {
       ;[
         this.extraIngredientsJsFrameworkSelection,
         this.extraIngredientsCssFrameworkSelection,
+        this.extraIngredientsTestingFrameworkSelection,
         this.databaseSelection,
         // this.frontendFrameworkSelection,
         this.chooseYourBaseSelection
       ].forEach((section) => {
         this.verifyPanelOpen = false
         const itemNames = section.map((item) => item.itemName)
-
+        console.log(itemName)
         if (itemNames.includes(itemName)) {
           if (section[0].group === 'extra-ingredients-js-framework') {
             this.selectedJsFramework = itemName
@@ -275,7 +308,8 @@ export default {
             }
             this.setVerificationLink(
               this.selectedJsFramework,
-              this.selectedCssFramework
+              this.selectedCssFramework,
+              this.selectedTestingFramework
             )
           } else if (section[0].group === 'extra-ingredients-css-framework') {
             this.selectedCssFramework = itemName
@@ -292,7 +326,23 @@ export default {
             }
             this.setVerificationLink(
               this.selectedJsFramework,
-              this.selectedCssFramework
+              this.selectedCssFramework,
+              this.selectedTestingFramework
+            )
+          } else if (
+            section[0].group === 'extra-ingredients-testing-framework'
+          ) {
+            this.selectedTestingFramework = itemName
+
+            if (itemName === 'Minitest') {
+              console.log('Minitest')
+            } else {
+              console.log('Rspec')
+            }
+            this.setVerificationLink(
+              this.selectedJsFramework,
+              this.selectedCssFramework,
+              this.selectedTestingFramework
             )
           } else if (section[0].group === 'choose-your-base') {
             this.selectedBase = itemName
@@ -414,25 +464,35 @@ export default {
       Vue.set(field, 'checked', checked)
       Vue.set(field, 'disabled', true)
     },
-    setVerificationLink(jsFramework, cssFramework) {
-      const railsBytes = jsFramework + '@' + cssFramework
+    setVerificationLink(jsFramework, cssFramework, testingFramework) {
+      if (testingFramework === 'Minitest') testingFramework = ''
+
+      const railsBytes =
+        jsFramework + '@' + cssFramework + '@' + testingFramework
       const railsBytesToURL = {
-        '@': '',
-        'Stimulus.js@': '/stimulus-verify',
-        'Stimulus.js + Stimulus Reflex@': '/stimulus-reflex-verify',
-        '@TailwindCSS': '/tailwind-verify',
-        '@Bootstrap': '/bootstrap-verify',
-        'Stimulus.js@TailwindCSS': '/stimulus-tailwind-verify',
-        'Stimulus.js@Bootstrap': '/stimulus-bootstrap-verify',
-        'Stimulus.js + Stimulus Reflex@TailwindCSS':
+        '@@': '',
+        'Stimulus.js@@': '/stimulus-verify',
+        'Stimulus.js + Stimulus Reflex@@': '/stimulus-reflex-verify',
+        '@TailwindCSS@': '/tailwind-verify',
+        '@Bootstrap@': '/bootstrap-verify',
+        'Stimulus.js@TailwindCSS@': '/stimulus-tailwind-verify',
+        'Stimulus.js@Bootstrap@': '/stimulus-bootstrap-verify',
+        'Stimulus.js + Stimulus Reflex@TailwindCSS@':
           '/stimulus-reflex-tailwind-verify',
-        'Stimulus.js + Stimulus Reflex@Bootstrap':
-          '/stimulus-reflex-bootstrap-verify'
+        'Stimulus.js + Stimulus Reflex@Bootstrap@':
+          '/stimulus-reflex-bootstrap-verify',
+        '@@RSpec': '/rspec-verify',
+        'Stimulus.js@@RSpec': '/stimulus-rspec-verify-faszfely'
       }
       this.verificationLink = railsBytesToURL[railsBytes]
     },
-    currentRailsBytesCombo(jsFramework, cssFramework) {
-      return jsFramework + '@' + cssFramework
+    currentRailsBytesCombo(jsFramework, cssFramework, testingFramework) {
+      if (testingFramework === 'Minitest') testingFramework = ''
+
+      console.log('UR verify combo is:')
+      console.log(jsFramework + '@' + cssFramework + '@' + testingFramework)
+
+      return jsFramework + '@' + cssFramework + '@' + testingFramework
     }
   },
   head() {
