@@ -1,0 +1,43 @@
+---
+JS Frameworks:
+  :variable_name: extraIngredientsJsFrameworkSelection
+  :group: extra-ingredients-js-framework
+  :items:
+    Stimulus.js:
+      :railsbyte_url: https://www.railsbytes.com/script/V33s33
+      :testing_instructions_file_name: verify_stimulus.txt
+      :description: A modest JavaScript framework for the HTML you already have
+      :logo: StimulusLogo
+    Stimulus.js + Stimulus Reflex:
+      :railsbyte_url: https://www.railsbytes.com/script/zr4s0Y
+      :testing_instructions_file_name: verify_sr.txt
+      :description: Craft modern, reactive web interfaces
+      :logo: StimulusReflexLogo
+CSS Frameworks:
+  :variable_name: extraIngredientsCssFrameworkSelection
+  :group: extra-ingredients-css-framework
+  :items:
+    TailwindCSS:
+      :railsbyte_url: https://www.railsbytes.com/script/X8BsGy
+      :testing_instructions_file_name: verify_tailwind.txt
+      :description: A utility-first CSS framework for rapidly building custom designs
+      :logo: TailwindLogo
+    Bootstrap:
+      :railsbyte_url: https://www.railsbytes.com/script/VMys5p
+      :testing_instructions_file_name: verify_bootstrap.txt
+      :description: Quickly design and customize responsive mobile-first sites
+      :logo: BootstrapLogo
+Testing Frameworks:
+  :variable_name: extraIngredientsTestingFrameworkSelection
+  :group: extra-ingredients-testing-framework
+  :items:
+    Minitest:
+      :railsbyte_url: ''
+      :testing_instructions_file_name: verify_minitest.txt
+      :description: A small and incredibly fast unit testing framework
+      :logo: DefaultLogo
+    RSpec:
+      :railsbyte_url: https://www.railsbytes.com/script/VD7sra
+      :testing_instructions_file_name: verify_rspec.txt
+      :description: Behaviour Driven Development for Ruby
+      :logo: RSpecLogo      

@@ -1,0 +1,44 @@
+<template>
+  <div class="w-full bg-gray-200">
+    <div class="max-w-3xl px-10 py-0 mx-auto pb-10">
+      <div
+        class="flex justify-between text-4xl font-semibold antialiased text-gray-700 mb-6 pt-6 tracking-tight leading-tight"
+      >
+        <h1>
+          Verify your <%= setup_name.gsub(':',' + ') %> Setup
+        </h1>
+        <div
+          class="hover:bg-gray-900 hover:text-gray-200 rounded-lg p-3 text-gray-500 text-3xl"
+          @click="closeVerifyPanel"
+        >
+          X CLOSE
+        </div>
+      </div>
+      <ol class="list-decimal leading-loose">
+        <%= shared_common_prep_steps_template %>   
+          
+        <% extra_ingredients_setup_steps.each do |extra_ingredient_setup_steps| %>    
+          <%= extra_ingredient_setup_steps %>
+        <% end %>
+        
+        <%= shared_common_verification_steps_template %>  
+        
+        <% extra_ingredients_verification_steps.each do |extra_ingredient_verification_steps| %>    
+          <%= extra_ingredient_verification_steps %>
+        <% end %>  
+      </ol>
+    </div>
+  </div>
+</template>
+
+<script>
+import eventBus from '@/eventBus.js'
+
+export default {
+  methods: {
+    closeVerifyPanel() {
+      eventBus.$emit('verifyPanelClosed')
+    }
+  }
+}
+</script>
