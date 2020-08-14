@@ -155,7 +155,19 @@ export default {
           'https://www.railsbytes.com/script/z0gsd8',
         'Stimulus.js + Stimulus Reflex:Bootstrap':
           'https://www.railsbytes.com/script/XnJs52',
-        'Stimulus.js:RSpec': 'https://www.railsbytes.com/script/XnJsb5'
+        'Stimulus.js:RSpec': 'https://www.railsbytes.com/script/XnJsb5',
+        'Stimulus.js + Stimulus Reflex:RSpec':
+          'https://www.railsbytes.com/script/VqqsAD',
+        'TailwindCSS:RSpec': 'https://www.railsbytes.com/script/V4Ysjj',
+        'Bootstrap:RSpec': 'https://www.railsbytes.com/script/Vwys0J',
+        'Stimulus.js:TailwindCSS:RSpec':
+          'https://www.railsbytes.com/script/Xo5s9m',
+        'Stimulus.js:Bootstrap:RSpec':
+          'https://www.railsbytes.com/script/VAjskW',
+        'Stimulus.js + Stimulus Reflex:TailwindCSS:RSpec':
+          'https://www.railsbytes.com/script/XE5s7O',
+        'Stimulus.js + Stimulus Reflex:Bootstrap:RSpec':
+          'https://www.railsbytes.com/script/zyvso6'
       }
       // TEMPLATE COMBOS END
 

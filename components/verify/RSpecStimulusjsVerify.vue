@@ -47,11 +47,12 @@
         </li>
 
         <li>
-          To verify Stimulus: the index page should display 'Hello, Stimulus!'.
+          To <strong>verify Stimulus</strong>: the index page should display
+          'Hello, Stimulus!'.
         </li>
 
         <li>
-          To verify RSpec, type this into your console:
+          To <strong>verify RSpec</strong>: type this into your console:
           <pre class="code">> rspec</pre>
 
           You should see something like:

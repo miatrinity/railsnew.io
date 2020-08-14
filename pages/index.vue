@@ -125,6 +125,16 @@
             ) === 'Stimulus.js@@RSpec'
         "
       />
+      <r-spec-stimulusjs-stimulus-reflex-verify
+        v-show="
+          verifyPanelOpen &&
+            currentRailsBytesCombo(
+              selectedJsFramework,
+              selectedCssFramework,
+              selectedTestingFramework
+            ) === 'Stimulus.js + Stimulus Reflex@@RSpec'
+        "
+      />
     </div>
     <br />
     <section-header title="Choose Your Base" />
@@ -190,6 +200,7 @@ import StimulusVerify from '@/components/verify/StimulusVerify'
 import TailwindVerify from '@/components/verify/TailwindVerify'
 import RSpecVerify from '@/components/verify/RSpecVerify'
 import RSpecStimulusjsVerify from '@/components/verify/RSpecStimulusjsVerify'
+import RSpecStimulusjsStimulusReflexVerify from '@/components/verify/RSpecStimulusjsStimulusReflexVerify'
 import SectionHeader from '@/components/sections/SectionHeader'
 import ExtraIngredientsJsFramework from '@/components/sections/ExtraIngredientsJsFramework'
 import ExtraIngredientsCssFramework from '@/components/sections/ExtraIngredientsCssFramework'
@@ -220,6 +231,7 @@ export default {
     TailwindVerify,
     RSpecVerify,
     RSpecStimulusjsVerify,
+    RSpecStimulusjsStimulusReflexVerify,
     SectionHeader,
     ExtraIngredientsJsFramework,
     ExtraIngredientsCssFramework,
@@ -278,7 +290,7 @@ export default {
       ].forEach((section) => {
         this.verifyPanelOpen = false
         const itemNames = section.map((item) => item.itemName)
-        console.log(itemName)
+
         if (itemNames.includes(itemName)) {
           if (section[0].group === 'extra-ingredients-js-framework') {
             this.selectedJsFramework = itemName
@@ -482,7 +494,8 @@ export default {
         'Stimulus.js + Stimulus Reflex@Bootstrap@':
           '/stimulus-reflex-bootstrap-verify',
         '@@RSpec': '/rspec-verify',
-        'Stimulus.js@@RSpec': '/stimulus-rspec-verify-faszfely'
+        'Stimulus.js@@RSpec': '/stimulus-rspec-verify',
+        'Stimulus.js + Stimulus Reflex@@RSpec': ''
       }
       this.verificationLink = railsBytesToURL[railsBytes]
     },
