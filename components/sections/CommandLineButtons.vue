@@ -19,7 +19,7 @@
     </a>
 
     <button
-      v-show="verificationLink !== undefined"
+      v-show="verificationLink !== ''"
       class="block bg-indigo-800 
              lg:rounded-lg md:rounded-lg xl:rounded-lg
              min-w-full sm:min-w-full md:min-w-0
