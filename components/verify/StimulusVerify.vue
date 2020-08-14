@@ -43,7 +43,7 @@
           >)
         </li>
         <li>
-          Verify that the text says 'Welcome to Stimulus'.
+          Verify that the text says 'Hello, Stimulus!'.
         </li>
       </ol>
     </div>
