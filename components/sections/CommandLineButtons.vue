@@ -12,7 +12,8 @@
       class="block bg-purple-500 
             lg:rounded-lg md:rounded-lg xl:rounded-lg 
             ml-0 md:mr-5
-            px-6 text-gray-100 shadow-2xl whitespace-no-wrap py-3"
+            px-6 text-gray-100 shadow-2xl whitespace-no-wrap py-3
+            cursor-pointer"
       @click.stop.prevent="copyToClipboard"
     >
       Copy to Clipboard
@@ -25,7 +26,8 @@
              min-w-full sm:min-w-full md:min-w-0
              text-left sm:text-left md:text-center
              ml-0 md:mr-5           
-             px-6 text-gray-100 shadow-2xl whitespace-no-wrap py-3"
+             px-6 text-gray-100 shadow-2xl whitespace-no-wrap py-3
+             cursor-pointer"
       @click.stop.prevent="openVerifyPanel"
     >
       Verify My Setup
@@ -34,7 +36,8 @@
     <a
       class="block bg-indigo-800 
              md:rounded-lg lg:rounded-lg xl:rounded-lg 
-             px-6 text-gray-100 shadow-2xl whitespace-no-wrap py-3"
+             px-6 text-gray-100 shadow-2xl whitespace-no-wrap py-3
+             cursor-pointer"
       href="/comingsoon"
       target="_blank"
     >
